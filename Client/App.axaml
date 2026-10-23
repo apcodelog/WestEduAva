@@ -7,12 +7,15 @@
     <Application.Styles>
         <FluentTheme />
         <StyleInclude Source="Assets/Styles/NavButtonStyles.axaml" />
+        <StyleInclude Source="Assets/Styles/ListStyles.axaml" />
     </Application.Styles>
 
     <Application.Resources>
         <SolidColorBrush x:Key="ColorBg1" Color="#d4d4d8" />
-        <SolidColorBrush x:Key="ColorBg2" Color="#52525b" />
+        <SolidColorBrush x:Key="ColorBg2" Color="#86efac" />
         <SolidColorBrush x:Key="ColorText1" Color="#18181b" />
+
+        <FontFamily x:Key="IconFont">avares://Client/Assets/Fonts/Phosphor.ttf#Phosphor</FontFamily>
     </Application.Resources>
 
 </Application>

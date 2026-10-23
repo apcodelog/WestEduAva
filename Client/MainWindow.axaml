@@ -6,16 +6,52 @@
         x:Class="Client.MainWindow"
         Title="Client">
     
-    <StackPanel Background="#d4d4d8">
-        <Border Background="#52525b" BorderBrush="#18181b" BorderThickness="0 0 0 1">
+    <StackPanel Background="{DynamicResource ColorBg1}">
+        <Border Background="{DynamicResource ColorBg2}" BorderBrush="{DynamicResource ColorText1}" BorderThickness="0 0 0 1">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="10" Height="60">
-                <Button Classes="nav" Content="H" />
-                <Button Classes="nav" Content="C" />
-                <Button Classes="nav" Content="S" />
-                <Button Classes="nav" Content="T" />
+                <Button Classes="nav">
+                    <StackPanel>
+                        <Label Content="&#xe2c2;" />
+                        <Label Content="Home" />
+                    </StackPanel>
+                </Button>
+                <Button Classes="nav">
+                    <StackPanel>
+                        <Label Content="&#xe5fe;" />
+                        <Label Content="Courses" />
+                    </StackPanel>
+                </Button>
+                <Button Classes="nav">
+                    <StackPanel>
+                        <Label Content="&#xe62c;" />
+                        <Label Content="Students" />
+                    </StackPanel>
+                </Button>
+                <Button Classes="nav">
+                    <StackPanel>
+                        <Label Content="&#xe516;" />
+                        <Label Content="Teachers" />
+                    </StackPanel>
+                </Button>
             </StackPanel>
         </Border>
 
+        <StackPanel>
+            <Grid Classes="list" ColumnDefinitions="20, 80, 250" Background="{DynamicResource ColorBg2}">
+                <Label Grid.Column="1" Content="Kurskod" />
+                <Label Grid.Column="2" Content="Titel" />
+            </Grid>
+            <Grid Classes="list">
+                <Grid ColumnDefinitions="20, 80, 250, 20, 20" RowDefinitions="Auto, Auto">
+                    <Button Grid.Column="0" Content="&#xe2ce;" />
+                    <Label Grid.Column="1" Content="5000" />
+                    <Label Grid.Column="2" Content="C# Grunder" />
+                    <Button Grid.Column="3" Content="&#xe3b4;" />
+                    <Button Grid.Column="4" Content="&#xe4a8;" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Text="Längd: 50 dagar &#x0a;På plats" />
+                </Grid>
+            </Grid>
+        </StackPanel>
         <TextBlock Text="Here is some test text" FontSize="40" Foreground="#18181b" />
 
     </StackPanel>

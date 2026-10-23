@@ -1,0 +1,37 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Padding="20">
+      <StackPanel>
+            <Grid Classes="list" ColumnDefinitions="20, 100, 250" Background="{DynamicResource ColorBg2}">
+                <Label Grid.Column="1" Content="Kurskod" />
+                <Label Grid.Column="2" Content="Titel" />
+            </Grid>
+            <Grid Classes="list">
+                <Grid ColumnDefinitions="20, 100, 250" RowDefinitions="Auto, Auto">
+                    <Button Grid.Column="0" Content="&#xe2ce;" />
+                    <Label Grid.Column="1" Content="5000" />
+                    <Label Grid.Column="2" Content="C# Grunder" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Text="Längd: 50 dagar &#x0a;På plats" />
+                </Grid>
+            </Grid>
+        </StackPanel>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Bug when TextBlock is added to same selector as Button and Label -->
+  <Style Selector="Grid.list Button, Grid.list Label" >
+    <Setter Property="Foreground" Value="{DynamicResource ColorText1}" />
+  </Style>
+  <Style Selector="Grid.list TextBlock" >
+    <Setter Property="Foreground" Value="{DynamicResource ColorText1}" />
+    <Setter Property="Padding" Value="4 0 0 4" />
+  </Style>
+
+  <Style Selector="Grid.list Button" >
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="FontFamily" Value="{DynamicResource IconFont}" />
+  </Style>
+</Styles>
