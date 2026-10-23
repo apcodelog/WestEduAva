@@ -6,5 +6,13 @@
 
     <Application.Styles>
         <FluentTheme />
+        <StyleInclude Source="Assets/Styles/NavButtonStyles.axaml" />
     </Application.Styles>
+
+    <Application.Resources>
+        <SolidColorBrush x:Key="ColorBg1" Color="#d4d4d8" />
+        <SolidColorBrush x:Key="ColorBg2" Color="#52525b" />
+        <SolidColorBrush x:Key="ColorText1" Color="#18181b" />
+    </Application.Resources>
+
 </Application>

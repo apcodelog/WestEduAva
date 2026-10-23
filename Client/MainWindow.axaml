@@ -5,5 +5,19 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Client.MainWindow"
         Title="Client">
-    Welcome to Avalonia!
+    
+    <StackPanel Background="#d4d4d8">
+        <Border Background="#52525b" BorderBrush="#18181b" BorderThickness="0 0 0 1">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="10" Height="60">
+                <Button Classes="nav" Content="H" />
+                <Button Classes="nav" Content="C" />
+                <Button Classes="nav" Content="S" />
+                <Button Classes="nav" Content="T" />
+            </StackPanel>
+        </Border>
+
+        <TextBlock Text="Here is some test text" FontSize="40" Foreground="#18181b" />
+
+    </StackPanel>
+
 </Window>
