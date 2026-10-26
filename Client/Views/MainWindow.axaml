@@ -2,10 +2,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:Client.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Client.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
         Title="Client">
     
+    <Design.DataContext>
+        <vm:MainWindowViewModel></vm:MainWindowViewModel>
+    </Design.DataContext>
+
+
     <StackPanel Background="{DynamicResource ColorBg1}">
         <Border Background="{DynamicResource ColorBg2}" BorderBrush="{DynamicResource ColorText1}" BorderThickness="0 0 0 1">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="10" Height="60">
@@ -36,6 +43,8 @@
             </StackPanel>
         </Border>
 
+        <UserControl Content="{Binding CurrentView}" />
+
         <StackPanel>
             <Grid Classes="list" ColumnDefinitions="20, 80, 250" Background="{DynamicResource ColorBg2}">
                 <Label Grid.Column="1" Content="Kurskod" />
@@ -52,7 +61,6 @@
                 </Grid>
             </Grid>
         </StackPanel>
-        <TextBlock Text="Here is some test text" FontSize="40" Foreground="#18181b" />
 
     </StackPanel>
 
