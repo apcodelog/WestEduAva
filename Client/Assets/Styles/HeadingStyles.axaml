@@ -1,0 +1,31 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Padding="20">
+      <StackPanel Spacing="20">
+        <TextBlock Classes="h1" Text="Heading 1" />
+        <TextBlock Classes="h2" Text="Heading 2" />
+        <TextBlock Classes="h3" Text="Heading 3" />
+        <TextBlock Text="Normal text" />
+      </StackPanel>
+    </Border>
+  </Design.PreviewWith>
+
+  <Style Selector="TextBlock.h1">
+    <Setter Property="FontSize" Value="25" />
+  </Style>
+
+  <Style Selector="TextBlock.h2">
+    <Setter Property="FontSize" Value="18" />
+  </Style>
+
+  <Style Selector="TextBlock.h3">
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="FontWeight" Value="Bold" />
+  </Style>
+
+  <Style Selector="TextBlock">
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="Foreground" Value="{DynamicResource ColorText1}" />
+  </Style>
+</Styles>

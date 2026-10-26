@@ -11,8 +11,9 @@
     <vm:HomeViewModel></vm:HomeViewModel>
   </Design.DataContext>
 
-  <StackPanel>
-    <TextBlock Text="{Binding PageTitle}" />
+  <StackPanel Margin="60 20" Background="{DynamicResource ColorBg1}">
+    <TextBlock Classes="h2" Text="WestCoast Education" />
+    <TextBlock Classes="h1" Text="{Binding PageTitle}" />
   </StackPanel>
 
 </UserControl>

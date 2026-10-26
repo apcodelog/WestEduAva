@@ -13,14 +13,16 @@
         <FluentTheme />
         <StyleInclude Source="Assets/Styles/NavButtonStyles.axaml" />
         <StyleInclude Source="Assets/Styles/ListStyles.axaml" />
+        <StyleInclude Source="Assets/Styles/HeadingStyles.axaml" />
     </Application.Styles>
 
     <Application.Resources>
-        <SolidColorBrush x:Key="ColorBg1" Color="#d4d4d8" />
-        <SolidColorBrush x:Key="ColorBg2" Color="#86efac" />
-        <SolidColorBrush x:Key="ColorText1" Color="#18181b" />
-
-        <FontFamily x:Key="IconFont">avares://Client/Assets/Fonts/Phosphor.ttf#Phosphor</FontFamily>
+        <ResourceDictionary>            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Assets/Resources/ColorResources.axaml" />
+                <ResourceInclude Source="/Assets/Resources/AppResources.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 
 </Application>
