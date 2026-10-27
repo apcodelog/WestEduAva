@@ -6,7 +6,7 @@ namespace Core.Models.Users;
 
 public class CourseLeader : Student
 {
-    public DateOnly HiringDate { get; set; }
+    public DateTime HiringDate { get; set; }
 
     public override void SetUserInfo()
     {

@@ -13,8 +13,8 @@ public class Course : IDataObject
     public string Title { get; set; } = "";
     public CourseTypeEnum CourseType { get; set; }
     public int Days { get; set; }
-    public DateOnly StartDate { get; set; }
-    public DateOnly EndDate { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
 
     public void SetUserInfo()
     {

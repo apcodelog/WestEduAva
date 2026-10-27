@@ -20,6 +20,7 @@
     <AvaloniaXaml Remove="Assets\Resources\ColorResources.axaml" />
     <AvaloniaXaml Remove="Assets\Styles\HeadingStyles.axaml" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.14" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.14" />
   </ItemGroup>
 

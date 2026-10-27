@@ -6,7 +6,7 @@ namespace Core.Models.Users;
 public class SchoolAdmin : UserBase
 {
     public string SSN { get; set; } = ""; // Social Security Number
-    public DateOnly HiringDate { get; set; }
+    public DateTime HiringDate { get; set; }
 
     public override void SetUserInfo()
     {
