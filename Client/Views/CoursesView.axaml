@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Client.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Client.Views.CoursesView"
+             x:DataType="vm:CoursesViewModel">
+  
+  <Design.DataContext>
+    <vm:CoursesViewModel></vm:CoursesViewModel>
+  </Design.DataContext>
+
+  <StackPanel Margin="60 20">
+    <TextBlock Classes="h1" Text="{Binding PageTitle}" />
+
+    <StackPanel>
+      <Grid Classes="list" ColumnDefinitions="20, 80, 350" Background="{DynamicResource ColorBg2}">
+          <Label Grid.Column="1" Content="Kurskod" />
+          <Label Grid.Column="2" Content="Titel" />
+      </Grid>
+
+      <ScrollViewer Height="350">
+
+        <ItemsControl ItemsSource="{Binding Courses}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <Grid Classes="list">
+                  <Grid ColumnDefinitions="20, 80, 350, 20, 20" RowDefinitions="Auto, Auto">
+                      <Button Grid.Column="0" Command="{Binding ToggleExpandedCommand}" Content="&#xe2ce;" />
+                      <Label Grid.Column="1" Content="{Binding CourseNumber}" />
+                      <Label Grid.Column="2" Content="{Binding Title}" />
+                      <Button Grid.Column="3" Content="&#xe3b4;" />
+                      <Button Grid.Column="4" Content="&#xe4a8;" />
+                      <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" IsVisible="{Binding IsExpanded}" Text="{Binding DetailsLines}" />
+                  </Grid>
+              </Grid>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+      </ScrollViewer>
+
+    </StackPanel>
+  </StackPanel>
+
+</UserControl>

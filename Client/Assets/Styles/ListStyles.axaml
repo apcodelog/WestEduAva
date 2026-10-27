@@ -22,10 +22,12 @@
   <!-- Bug when TextBlock is added to same selector as Button and Label -->
   <Style Selector="Grid.list Button, Grid.list Label" >
     <Setter Property="Foreground" Value="{DynamicResource ColorText1}" />
+    <Setter Property="FontSize" Value="15" />
   </Style>
   <Style Selector="Grid.list TextBlock" >
     <Setter Property="Foreground" Value="{DynamicResource ColorText1}" />
     <Setter Property="Padding" Value="4 0 0 4" />
+    <Setter Property="FontSize" Value="15" />
   </Style>
 
   <Style Selector="Grid.list Button" >

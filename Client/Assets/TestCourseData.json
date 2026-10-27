@@ -1,0 +1,92 @@
+[
+  {
+    "id": "3f2504e0-4f89-41d3-9a0c-0305d82c5b1c",
+    "courseNumber": "1001",
+    "title": "Grundkurs i C# och .NET",
+    "courseType": 1,
+    "days": 5,
+    "startDate": "2026-11-02",
+    "endDate": "2026-11-06"
+  },
+  {
+    "id": "a8b9c2d3-e4f5-4a6b-7c8d-9e0f1a2b3c4d",
+    "courseNumber": "1002",
+    "title": "Java-programmering för nybörjare",
+    "courseType": 1,
+    "days": 4,
+    "startDate": "2026-11-09",
+    "endDate": "2026-11-12"
+  },
+  {
+    "id": "765e4321-b89c-4d21-a345-6789abcdef01",
+    "courseNumber": "2001",
+    "title": "Avancerad C# och asynkron programmering",
+    "courseType": 2,
+    "days": 3,
+    "startDate": "2026-11-16",
+    "endDate": "2026-11-18"
+  },
+  {
+    "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "courseNumber": "2002",
+    "title": "Objektorienterad analys och design med Java",
+    "courseType": 2,
+    "days": 5,
+    "startDate": "2026-11-23",
+    "endDate": "2026-11-27"
+  },
+  {
+    "id": "11a22b33-44c5-55d6-66e7-77f88a99b00c",
+    "courseNumber": "1003",
+    "title": "Webbutveckling med ASP.NET Core",
+    "courseType": 1,
+    "days": 5,
+    "startDate": "2026-12-01",
+    "endDate": "2026-12-05"
+  },
+  {
+    "id": "99887766-5544-3322-1100-abcdefabcdef",
+    "courseNumber": "1004",
+    "title": "Bygg mikrotjänster med Spring Boot och Java",
+    "courseType": 1,
+    "days": 4,
+    "startDate": "2026-12-07",
+    "endDate": "2026-12-10"
+  },
+  {
+    "id": "bcde0123-4567-89ab-cdef-0123456789ab",
+    "courseNumber": "2003",
+    "title": "Enhetstestning i C# med xUnit och Moq",
+    "courseType": 2,
+    "days": 2,
+    "startDate": "2026-12-14",
+    "endDate": "2026-12-15"
+  },
+  {
+    "id": "cafe9999-bbbb-cccc-dddd-eeeeffff0000",
+    "courseNumber": "2004",
+    "title": "Prestandaoptimering i Java-applikationer",
+    "courseType": 2,
+    "days": 3,
+    "startDate": "2027-01-11",
+    "endDate": "2027-01-13"
+  },
+  {
+    "id": "00001111-2222-3333-4444-555566667777",
+    "courseNumber": "1005",
+    "title": "Databasåtkomst med Entity Framework Core",
+    "courseType": 1,
+    "days": 3,
+    "startDate": "2027-01-18",
+    "endDate": "2027-01-20"
+  },
+  {
+    "id": "deadbeef-4444-1111-2222-123456789abc",
+    "courseNumber": "2005",
+    "title": "Säker programmering i Java och Spring Security",
+    "courseType": 2,
+    "days": 4,
+    "startDate": "2027-01-25",
+    "endDate": "2027-01-28"
+  }
+]

@@ -10,6 +10,6 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel()
     {
-        CurrentView = new HomeViewModel();
+        CurrentView = new CoursesViewModel();
     }
 }
