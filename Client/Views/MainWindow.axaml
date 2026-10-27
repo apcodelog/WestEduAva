@@ -16,13 +16,13 @@
     <StackPanel Background="{DynamicResource ColorBg1}">
         <Border Background="{DynamicResource ColorBg2}" BorderBrush="{DynamicResource ColorText1}" BorderThickness="0 0 0 1">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="10" Height="50">
-                <Button Classes="nav">
+                <Button Classes="nav" Command="{Binding GoToHomeCommand}">
                     <StackPanel>
                         <Label Content="&#xe2c2;" />
                         <Label Content="Home" />
                     </StackPanel>
                 </Button>
-                <Button Classes="nav">
+                <Button Classes="nav" Command="{Binding GoToCoursesCommand}">
                     <StackPanel>
                         <Label Content="&#xe5fe;" />
                         <Label Content="Courses" />

@@ -1,15 +1,25 @@
 using System;
+using Client.Factories;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Client.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    [ObservableProperty]
-    public partial ViewModelBase CurrentView { get; set; }
+    private readonly PageViewFactory _pageViewFactory;
 
-    public MainWindowViewModel()
+    [ObservableProperty]
+    public partial ViewModelBase CurrentView { get; set; } = new();
+
+    public MainWindowViewModel(PageViewFactory pageViewFactory)
     {
-        CurrentView = new CoursesViewModel();
+        _pageViewFactory = pageViewFactory;
+        GoToHome();
     }
+
+    [RelayCommand]
+    public void GoToHome() => CurrentView = _pageViewFactory.LoadPageViewModel<HomeViewModel>();
+    [RelayCommand]
+    public void GoToCourses() => CurrentView = _pageViewFactory.LoadPageViewModel<CoursesViewModel>();
 }
