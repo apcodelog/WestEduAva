@@ -9,8 +9,8 @@ namespace Client.Models;
 [INotifyPropertyChanged]
 public partial class CourseAva : Course
 {
-    public string DetailsLines => $"Startdatum: {StartDate}{Environment.NewLine}" + 
-                                  $"Slutdatum: {EndDate}{Environment.NewLine}" + 
+    public string DetailsLines => $"Startdatum: {StartDate:d}{Environment.NewLine}" + 
+                                  $"Slutdatum: {EndDate:d}{Environment.NewLine}" + 
                                   $"Kurstyp: {CourseType.ToSwedish()}{Environment.NewLine}" +
                                   $"Antal undervisningsdagar: {Days}";
 
