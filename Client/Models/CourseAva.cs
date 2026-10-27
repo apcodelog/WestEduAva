@@ -9,6 +9,8 @@ namespace Client.Models;
 [INotifyPropertyChanged]
 public partial class CourseAva : Course
 {
+    public string _id { get; set; } = ""; // restdb standard id
+
     public string DetailsLines => $"Startdatum: {StartDate:d}{Environment.NewLine}" + 
                                   $"Slutdatum: {EndDate:d}{Environment.NewLine}" + 
                                   $"Kurstyp: {CourseType.ToSwedish()}{Environment.NewLine}" +

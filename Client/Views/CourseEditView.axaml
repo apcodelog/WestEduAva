@@ -15,10 +15,10 @@
       <TextBlock Classes="h2" Text="{Binding PageTitle}" />
       <Grid Classes="form" RowSpacing="5" ColumnSpacing="5" ColumnDefinitions="180, 150" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
         <Label Grid.Column="0" Grid.Row="0" Content="Kurskod" />
-        <TextBox Grid.Column="1" Grid.Row="0" />
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding CourseNumber}" />
         
         <Label Grid.Column="0" Grid.Row="1" Content="Titel" />
-        <TextBox Grid.Column="1" Grid.Row="1" />
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Title}" />
 
         <Label Grid.Column="0" Grid.Row="2" Content="Kurstyp" />
         <ComboBox Grid.Column="1" Grid.Row="2" />
@@ -34,7 +34,7 @@
       </Grid>
       
       <StackPanel Orientation="Horizontal" Spacing="40" HorizontalAlignment="Center">
-        <Button Classes="nav yes">
+        <Button Classes="nav yes" Command="{Binding SaveCommand}">
             <StackPanel>
                 <Label Content="&#xe182;" />
                 <Label Content="Spara" />

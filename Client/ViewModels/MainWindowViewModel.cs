@@ -1,4 +1,5 @@
 using System;
+using Client.Enums;
 using Client.Factories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -15,13 +16,15 @@ public partial class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel(PageViewFactory pageViewFactory)
     {
         _pageViewFactory = pageViewFactory;
-        GoToCourseEdit();
+        GoToHome();
     }
 
     [RelayCommand]
-    public void GoToHome() => CurrentView = _pageViewFactory.LoadPageViewModel<HomeViewModel>();
+    public void GoToHome() => CurrentView = _pageViewFactory.LoadPageViewModel(ViewTypeEnum.Home);
     [RelayCommand]
-    public void GoToCourses() => CurrentView = _pageViewFactory.LoadPageViewModel<CoursesViewModel>();
+    public void GoToCourses() => CurrentView = _pageViewFactory.LoadPageViewModel(ViewTypeEnum.Courses);
     [RelayCommand]
-    public void GoToCourseEdit() => CurrentView = _pageViewFactory.LoadPageViewModel<CourseEditViewModel>();
+    public void GoToCourseEdit(string interalId) => CurrentView = _pageViewFactory.LoadPageViewModel(ViewTypeEnum.EditCourse, interalId);
+    [RelayCommand]
+    public void GoToCourseNew() => CurrentView = _pageViewFactory.LoadPageViewModel(ViewTypeEnum.NewCourse);
 }

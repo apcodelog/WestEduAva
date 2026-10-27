@@ -19,7 +19,7 @@
           <Label Grid.Column="1" Content="Kurskod" />
           <Label Grid.Column="2" Content="Titel" />
           <Button Grid.Column="3" FontFamily="Default" HorizontalAlignment="Left" 
-           Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).GoToCourseEditCommand}" Content="+ Lägg till kurs" />
+           Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).GoToCourseNewCommand}" Content="+ Lägg till kurs" />
       </Grid>
 
       <ScrollViewer Height="350">
@@ -32,8 +32,12 @@
                       <Button Grid.Column="0" Command="{Binding ToggleExpandedCommand}" Content="&#xe2ce;" />
                       <Label Grid.Column="1" Content="{Binding CourseNumber}" />
                       <Label Grid.Column="2" Content="{Binding Title}" />
-                      <Button Grid.Column="3" Content="&#xe3b4;" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).GoToCourseEditCommand}" />
-                      <Button Grid.Column="4" Content="&#xe4a8;" />
+                      <Button Grid.Column="3" Content="&#xe3b4;" 
+                        Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).GoToCourseEditCommand}"
+                        CommandParameter="{Binding Id}" />
+                      <Button Grid.Column="4" Content="&#xe4a8;" 
+                        Command="{Binding $parent[UserControl].DataContext.DeleteCommand}"
+                        CommandParameter="{Binding Id}" />
                       <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" IsVisible="{Binding IsExpanded}" Text="{Binding DetailsLines}" />
                   </Grid>
               </Grid>

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Client.Interfaces;
+using Client.Models;
+using Core.Models;
 
 namespace Client.Services;
 
@@ -9,9 +11,14 @@ public class DataObjectService<T> : IDataObjectService<T> where T : class
 {
     private readonly string _resource;
 
-    public DataObjectService(string resource)
+    public DataObjectService()
     {
-        _resource = resource;
+        _resource = typeof(T) switch
+        {
+            _ when typeof(T) == typeof(CourseAva) => "courses",
+            _ when typeof(T) == typeof(Course) => "courses",
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
 
     public async Task Add(T data)
