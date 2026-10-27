@@ -13,6 +13,7 @@ public class PageViewFactory
         {
             _ when typeof(T) == typeof(HomeViewModel) => new HomeViewModel(),
             _ when typeof(T) == typeof(CoursesViewModel) => new CoursesViewModel(new DataObjectService<CourseAva>("courses")),
+            _ when typeof(T) == typeof(CourseEditViewModel) => new CourseEditViewModel(),
             _ => throw new ArgumentOutOfRangeException()
         };
     }

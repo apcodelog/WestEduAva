@@ -22,4 +22,6 @@ public partial class MainWindowViewModel : ViewModelBase
     public void GoToHome() => CurrentView = _pageViewFactory.LoadPageViewModel<HomeViewModel>();
     [RelayCommand]
     public void GoToCourses() => CurrentView = _pageViewFactory.LoadPageViewModel<CoursesViewModel>();
+    [RelayCommand]
+    public void GoToCourseEdit() => CurrentView = _pageViewFactory.LoadPageViewModel<CourseEditViewModel>();
 }

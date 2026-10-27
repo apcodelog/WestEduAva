@@ -15,9 +15,11 @@
     <TextBlock Classes="h1" Text="{Binding PageTitle}" />
 
     <StackPanel>
-      <Grid Classes="list" ColumnDefinitions="20, 80, 350" Background="{DynamicResource ColorBg2}">
+      <Grid Classes="list" ColumnDefinitions="20, 80, 340, *" Background="{DynamicResource ColorBg2}">
           <Label Grid.Column="1" Content="Kurskod" />
           <Label Grid.Column="2" Content="Titel" />
+          <Button Grid.Column="3" FontFamily="Default" HorizontalAlignment="Left" 
+           Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).GoToCourseEditCommand}" Content="+ Lägg till kurs" />
       </Grid>
 
       <ScrollViewer Height="350">
@@ -26,11 +28,11 @@
           <ItemsControl.ItemTemplate>
             <DataTemplate>
               <Grid Classes="list">
-                  <Grid ColumnDefinitions="20, 80, 350, 20, 20" RowDefinitions="Auto, Auto">
+                  <Grid ColumnDefinitions="20, 80, 400, 20, 20" RowDefinitions="Auto, Auto">
                       <Button Grid.Column="0" Command="{Binding ToggleExpandedCommand}" Content="&#xe2ce;" />
                       <Label Grid.Column="1" Content="{Binding CourseNumber}" />
                       <Label Grid.Column="2" Content="{Binding Title}" />
-                      <Button Grid.Column="3" Content="&#xe3b4;" />
+                      <Button Grid.Column="3" Content="&#xe3b4;" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).GoToCourseEditCommand}" />
                       <Button Grid.Column="4" Content="&#xe4a8;" />
                       <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" IsVisible="{Binding IsExpanded}" Text="{Binding DetailsLines}" />
                   </Grid>
