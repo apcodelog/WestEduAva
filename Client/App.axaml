@@ -14,6 +14,8 @@
         <StyleInclude Source="Assets/Styles/NavButtonStyles.axaml" />
         <StyleInclude Source="Assets/Styles/ListStyles.axaml" />
         <StyleInclude Source="Assets/Styles/HeadingStyles.axaml" />
+        <StyleInclude Source="Assets/Styles/LabelStyles.axaml" />
+        <StyleInclude Source="Assets/Styles/InputStyles.axaml" />
     </Application.Styles>
 
     <Application.Resources>

@@ -15,7 +15,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel(PageViewFactory pageViewFactory)
     {
         _pageViewFactory = pageViewFactory;
-        GoToHome();
+        GoToCourseEdit();
     }
 
     [RelayCommand]

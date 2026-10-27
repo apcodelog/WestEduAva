@@ -4,7 +4,11 @@
   
 <Color x:Key="_colorBg1">#d4d4d8</Color>
 <Color x:Key="_colorBg2">#499B67</Color>
-<Color x:Key="_colorBg2V">#60B57F</Color>
+
 <Color x:Key="_colorText1">#18181b</Color>
+<Color x:Key="_colorYes">#1D6743</Color>
+<Color x:Key="_colorNo">#7F1C1C</Color>
+
+<Color x:Key="_colorFade1">#3CFFFFFF</Color>
 
 </ResourceDictionary>

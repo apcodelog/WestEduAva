@@ -1,11 +1,19 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=netstandard">
   
   <FontFamily x:Key="IconFont">avares://Client/Assets/Fonts/Phosphor.ttf#Phosphor</FontFamily>
     
   <SolidColorBrush x:Key="ColorBg1" Color="{DynamicResource _colorBg1}" />
   <SolidColorBrush x:Key="ColorBg2" Color="{DynamicResource _colorBg2}" />
-  <SolidColorBrush x:Key="ColorBg2V" Color="{DynamicResource _colorBg2V}" />
+
   <SolidColorBrush x:Key="ColorText1" Color="{DynamicResource _colorText1}" />
+  <SolidColorBrush x:Key="ColorYes" Color="{DynamicResource _colorYes}" />
+  <SolidColorBrush x:Key="ColorNo" Color="{DynamicResource _colorNo}" />
+  
+  <SolidColorBrush x:Key="ColorFade1" Color="{DynamicResource _colorFade1}" />
+
+  <sys:Double x:Key="FormRowH">20.0</sys:Double>
+  <sys:Double x:Key="FontSizeNormal">12.0</sys:Double>
 
 </ResourceDictionary>

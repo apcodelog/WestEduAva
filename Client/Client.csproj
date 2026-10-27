@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -19,6 +19,8 @@
     <AvaloniaXaml Remove="Assets\Resources\AppResources.axaml" />
     <AvaloniaXaml Remove="Assets\Resources\ColorResources.axaml" />
     <AvaloniaXaml Remove="Assets\Styles\HeadingStyles.axaml" />
+    <AvaloniaXaml Remove="Assets\Styles\InputStyles.axaml" />
+    <AvaloniaXaml Remove="Assets\Styles\LabelStyles.axaml" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.14" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.14" />
