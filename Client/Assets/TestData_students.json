@@ -1,0 +1,302 @@
+[
+  {
+    "id": "4f8b9c2a-6d1e-4b3a-9c5f-8e7d6c5b4a3a",
+    "firstName": "Liam",
+    "lastName": "Andersson",
+    "phone": "+46-70-123-4567",
+    "email": "liam.andersson@example.se",
+    "address": {
+      "streetAddress": "Kungsgatan 12",
+      "postalCode": "111 35",
+      "town": "Stockholm",
+      "country": "Sweden"
+    },
+    "ssn": "19900115-1234",
+    "courses": []
+  },
+  {
+    "id": "7d9e1a3b-5c2f-4e6d-8b0a-9f8e7d6c5b4b",
+    "firstName": "Emma",
+    "lastName": "Johansson",
+    "phone": "+46-73-987-6543",
+    "email": "emma.johansson@example.se",
+    "address": {
+      "streetAddress": "Avenyn 4",
+      "postalCode": "411 36",
+      "town": "Göteborg",
+      "country": "Sweden"
+    },
+    "ssn": "19880423-2345",
+    "courses": []
+  },
+  {
+    "id": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+    "firstName": "Elias",
+    "lastName": "Karlsson",
+    "phone": "+46-72-345-6789",
+    "email": "elias.karlsson@example.se",
+    "address": {
+      "streetAddress": "Stortorget 8",
+      "postalCode": "211 34",
+      "town": "Malmö",
+      "country": "Sweden"
+    },
+    "ssn": "19951102-3456",
+    "courses": []
+  },
+  {
+    "id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6e",
+    "firstName": "Maja",
+    "lastName": "Nilsson",
+    "phone": "+46-76-543-2109",
+    "email": "maja.nilsson@example.se",
+    "address": {
+      "streetAddress": "Drottninggatan 15",
+      "postalCode": "753 10",
+      "town": "Uppsala",
+      "country": "Sweden"
+    },
+    "ssn": "19920719-4567",
+    "courses": []
+  },
+  {
+    "id": "f8e7d6c5-b4a3-2f1e-0d9c-8b7a6f5e4d3c",
+    "firstName": "Hugo",
+    "lastName": "Eriksson",
+    "phone": "+46-79-876-5432",
+    "email": "hugo.eriksson@example.se",
+    "address": {
+      "streetAddress": "Smedjegatan 3",
+      "postalCode": "722 13",
+      "town": "Västerås",
+      "country": "Sweden"
+    },
+    "ssn": "20010305-5678",
+    "courses": []
+  },
+  {
+    "id": "b9a8c7d6-e5f4-3e2d-1c0b-9a8f7e6d5c4b",
+    "firstName": "Alma",
+    "lastName": "Larsson",
+    "phone": "+46-70-222-3344",
+    "email": "alma.larsson@example.se",
+    "address": {
+      "streetAddress": "Klostergatan 10",
+      "postalCode": "702 14",
+      "town": "Örebro",
+      "country": "Sweden"
+    },
+    "ssn": "19940830-6789",
+    "courses": []
+  },
+  {
+    "id": "3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f",
+    "firstName": "Oliver",
+    "lastName": "Olsson",
+    "phone": "+46-73-444-5566",
+    "email": "oliver.olsson@example.se",
+    "address": {
+      "streetAddress": "Storgatan 22",
+      "postalCode": "582 23",
+      "town": "Linköping",
+      "country": "Sweden"
+    },
+    "ssn": "19871212-7890",
+    "courses": []
+  },
+  {
+    "id": "d7c6b5a4-9e8f-7d6c-5b4a-3f2e1d0c9b8a",
+    "firstName": "Linnea",
+    "lastName": "Persson",
+    "phone": "+46-72-666-7788",
+    "email": "linnea.persson@example.se",
+    "address": {
+      "streetAddress": "Korsgatan 7",
+      "postalCode": "602 21",
+      "town": "Norrköping",
+      "country": "Sweden"
+    },
+    "ssn": "19970514-8901",
+    "courses": []
+  },
+  {
+    "id": "e5f6a1b2-c3d4-4e5f-6a7b-8c9d0e1f2a3b",
+    "firstName": "William",
+    "lastName": "Svensson",
+    "phone": "+46-76-888-9900",
+    "email": "william.svensson@example.se",
+    "address": {
+      "streetAddress": "Torggatan 5",
+      "postalCode": "553 21",
+      "town": "Jönköping",
+      "country": "Sweden"
+    },
+    "ssn": "19991022-9012",
+    "courses": []
+  },
+  {
+    "id": "2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c",
+    "firstName": "Ella",
+    "lastName": "Gustafsson",
+    "phone": "+46-79-111-2233",
+    "email": "ella.gustafsson@example.se",
+    "address": {
+      "streetAddress": "Västra Storgatan 14",
+      "postalCode": "903 26",
+      "town": "Umeå",
+      "country": "Sweden"
+    },
+    "ssn": "19930228-0123",
+    "courses": []
+  },
+  {
+    "id": "8a9b0c1d-2e3f-4a5b-6c7d-8e9f0a1b2c3d",
+    "firstName": "Lucas",
+    "lastName": "Pettersson",
+    "phone": "+46-70-555-6677",
+    "email": "lucas.pettersson@example.se",
+    "address": {
+      "streetAddress": "Nygatan 19",
+      "postalCode": "803 20",
+      "town": "Gävle",
+      "country": "Sweden"
+    },
+    "ssn": "19910606-1234",
+    "courses": []
+  },
+  {
+    "id": "c5b4a3d2-e1f0-9c8b-7a6f-5e4d3c2b1a0f",
+    "firstName": "Ebba",
+    "lastName": "Jonsson",
+    "phone": "+46-73-777-8899",
+    "email": "ebba.jonsson@example.se",
+    "address": {
+      "streetAddress": "Trädgårdsgatan 11",
+      "postalCode": "504 33",
+      "town": "Borås",
+      "country": "Sweden"
+    },
+    "ssn": "19960917-2345",
+    "courses": []
+  },
+  {
+    "id": "9f8e7d6c-5b4a-3f2e-1d0c-9b8a7f6e5d4c",
+    "firstName": "Isak",
+    "lastName": "Jansson",
+    "phone": "+46-72-999-0011",
+    "email": "isak.jansson@example.se",
+    "address": {
+      "streetAddress": "Köpmangatan 6",
+      "postalCode": "632 20",
+      "town": "Eskilstuna",
+      "country": "Sweden"
+    },
+    "ssn": "19980125-3456",
+    "courses": []
+  },
+  {
+    "id": "1b2c3d4e-5f6a-7b8c-9d0e-1f2a3b4c5d6e",
+    "firstName": "Wilma",
+    "lastName": "Hansson",
+    "phone": "+46-76-123-0099",
+    "email": "wilma.hansson@example.se",
+    "address": {
+      "streetAddress": "Rådhusgatan 9",
+      "postalCode": "652 24",
+      "town": "Karlstad",
+      "country": "Sweden"
+    },
+    "ssn": "20000411-4567",
+    "courses": []
+  },
+  {
+    "id": "7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d",
+    "firstName": "Arvid",
+    "lastName": "Bengtsson",
+    "phone": "+46-79-456-1122",
+    "email": "arvid.bengtsson@example.se",
+    "address": {
+      "streetAddress": "Östergatan 2",
+      "postalCode": "352 33",
+      "town": "Växjö",
+      "country": "Sweden"
+    },
+    "ssn": "19891129-5678",
+    "courses": []
+  },
+  {
+    "id": "d6c5b4a3-2f1e-0d9c-8b7a-6f5e4d3c2b1a",
+    "firstName": "Astrid",
+    "lastName": "Jönsson",
+    "phone": "+46-70-789-2233",
+    "email": "astrid.jonsson@example.se",
+    "address": {
+      "streetAddress": "Storgatan 45",
+      "postalCode": "302 43",
+      "town": "Halmstad",
+      "country": "Sweden"
+    },
+    "ssn": "19940303-6789",
+    "courses": []
+  },
+  {
+    "id": "5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b",
+    "firstName": "Ludvig",
+    "lastName": "Lindberg",
+    "phone": "+46-73-234-5566",
+    "email": "ludvig.lindberg@example.se",
+    "address": {
+      "streetAddress": "Södergatan 13",
+      "postalCode": "252 25",
+      "town": "Helsingborg",
+      "country": "Sweden"
+    },
+    "ssn": "19910518-7890",
+    "courses": []
+  },
+  {
+    "id": "3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d",
+    "firstName": "Saga",
+    "lastName": "Berg",
+    "phone": "+46-72-890-4455",
+    "email": "saga.berg@example.se",
+    "address": {
+      "streetAddress": "Stationsgatan 8",
+      "postalCode": "791 30",
+      "town": "Falun",
+      "country": "Sweden"
+    },
+    "ssn": "19961208-8901",
+    "courses": []
+  },
+  {
+    "id": "8f9a0b1c-2d3e-4f5a-6b7c-8d9e0f1a2b3c",
+    "firstName": "Filip",
+    "lastName": "Sjögren",
+    "phone": "+46-76-345-6677",
+    "email": "filip.sjogren@example.se",
+    "address": {
+      "streetAddress": "Borgmästaregatan 4",
+      "postalCode": "371 34",
+      "town": "Karlskrona",
+      "country": "Sweden"
+    },
+    "ssn": "19930707-9012",
+    "courses": []
+  },
+  {
+    "id": "0b1c2d3e-4f5a-6b7c-8d9e-0f1a2b3c4d5e",
+    "firstName": "Signe",
+    "lastName": "Holm",
+    "phone": "+46-79-567-8899",
+    "email": "signe.holm@example.se",
+    "address": {
+      "streetAddress": "Kyrkogatan 21",
+      "postalCode": "831 31",
+      "town": "Östersund",
+      "country": "Sweden"
+    },
+    "ssn": "19951010-0123",
+    "courses": []
+  }
+]

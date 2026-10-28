@@ -28,13 +28,13 @@
                         <Label Content="Courses" />
                     </StackPanel>
                 </Button>
-                <Button Classes="nav">
+                <Button Classes="nav" Command="{Binding GoToStudents}">
                     <StackPanel>
                         <Label Content="&#xe62c;" />
                         <Label Content="Students" />
                     </StackPanel>
                 </Button>
-                <Button Classes="nav">
+                <Button Classes="nav" Command="{Binding GoToTeachers}">
                     <StackPanel>
                         <Label Content="&#xe516;" />
                         <Label Content="Teachers" />

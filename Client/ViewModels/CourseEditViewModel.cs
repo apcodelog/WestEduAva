@@ -12,7 +12,7 @@ namespace Client.ViewModels;
 
 public partial class CourseEditViewModel : ViewModelBase
 {
-    private readonly IDataObjectService<Course> _dataObjectService;
+    private readonly (IDataObjectService<Course> normal, IDataObjectService<CourseAva> ava) _dataObjectService;
     private string? _dbId;
     private string? _interalId;
 
@@ -32,13 +32,13 @@ public partial class CourseEditViewModel : ViewModelBase
 
     public CourseEditViewModel()
     {
-        _dataObjectService = new DataObjectService<Course>();
+        _dataObjectService = (new DataObjectService<Course>(), new DataObjectService<CourseAva>());
         PageTitle = "Ny / Ändra kurs - For preview during development";
     }
 
-    public CourseEditViewModel(IDataObjectService<Course> dataObjectService, string? internalId)
+    public CourseEditViewModel(IDataObjectService<Course> dataObjectService, DataObjectService<CourseAva> dataObjectServiceAva, string? internalId)
     {
-        _dataObjectService = dataObjectService;
+        _dataObjectService = (dataObjectService, dataObjectServiceAva);
         _interalId = internalId;
 
         if (!string.IsNullOrWhiteSpace(internalId))
@@ -55,8 +55,7 @@ public partial class CourseEditViewModel : ViewModelBase
     public async void Init() => await GetCourse();
     private async Task GetCourse()
     {
-        // todo find better solution
-        var course = await new DataObjectService<CourseAva>().Find("id", _interalId!); // Id expected to not be null
+        var course = await _dataObjectService.ava.Find("id", _interalId!); // Id expected to not be null
 
         _dbId = course._id;
 
@@ -82,8 +81,8 @@ public partial class CourseEditViewModel : ViewModelBase
         };
 
         if (string.IsNullOrWhiteSpace(_dbId))
-            await _dataObjectService.Add(course);
+            await _dataObjectService.normal.Add(course);
         else
-            await _dataObjectService.Update(course, _dbId);
+            await _dataObjectService.normal.Update(course, _dbId);
     }
 }

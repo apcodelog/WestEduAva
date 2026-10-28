@@ -5,5 +5,7 @@ public enum ViewTypeEnum
     Home,
     Courses,
     EditCourse,
-    NewCourse
+    NewCourse,
+    Students,
+    Teachers
 }

@@ -11,7 +11,15 @@ public class ViewLocator : IDataTemplate
     {
         if (data is null) return null;
 
-        var viewName = data.GetType().FullName!.Replace("ViewModel", "View", StringComparison.InvariantCulture);
+        var dataType = data.GetType();
+
+        string viewName = data.GetType().FullName!;
+        if (dataType.IsGenericType)
+        {
+            viewName = viewName.Substring(0, viewName.IndexOf('`'));
+        }
+
+        viewName = viewName.Replace("ViewModel", "View", StringComparison.InvariantCulture);
         var view = Type.GetType(viewName);
 
         if (view is null) return null;

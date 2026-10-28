@@ -23,7 +23,7 @@ public partial class CoursesViewModel : ViewModelBase
         _dataObjectService = new DataObjectService<CourseAva>();
         PageTitle = "Kurser - From Dev Preview Constructor";
 
-        var list = new Storage<CourseAva>().Read(Path.Combine(Directory.GetCurrentDirectory(), "Assets", "TestCourseData.json"));
+        var list = new Storage<CourseAva>().Read(Path.Combine(Directory.GetCurrentDirectory(), "Assets", "TestData_courses.json"));
         Courses = new ObservableCollection<CourseAva>(list);
     }
 

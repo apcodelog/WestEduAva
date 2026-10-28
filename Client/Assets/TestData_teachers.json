@@ -1,0 +1,107 @@
+[
+  {
+    "id": "e6b72f41-39c4-4b52-9c3f-4e58b3cd1a8d",
+    "firstName": "Lars",
+    "lastName": "Andersson",
+    "phone": "+46 8 123 45 67",
+    "email": "lars.andersson@example.se",
+    "address": {
+      "streetAddress": "Kungsgatan 12",
+      "postalCode": "111 35",
+      "town": "Stockholm",
+      "country": "Sweden"
+    },
+    "knowledgeList": [2, 5, 14],
+    "courses": []
+  },
+  {
+    "id": "7fa128c9-02b4-4e11-bf12-5819dfab2e34",
+    "firstName": "Emma",
+    "lastName": "Johansson",
+    "phone": "+46 31 987 65 43",
+    "email": "emma.johansson@example.se",
+    "address": {
+      "streetAddress": "Avenyn 4",
+      "postalCode": "411 36",
+      "town": "Göteborg",
+      "country": "Sweden"
+    },
+    "knowledgeList": [1, 8],
+    "courses": []
+  },
+  {
+    "id": "3c98ad44-faef-4177-ad5d-e21543889c12",
+    "firstName": "Sven",
+    "lastName": "Nilsson",
+    "phone": "+46 40 555 12 34",
+    "email": "sven.nilsson@example.se",
+    "address": {
+      "streetAddress": "Stortorget 7",
+      "postalCode": "211 22",
+      "town": "Malmö",
+      "country": "Sweden"
+    },
+    "knowledgeList": [3, 11, 16],
+    "courses": []
+  },
+  {
+    "id": "f512da8b-6622-48df-bc8d-0c8452efbb45",
+    "firstName": "Malin",
+    "lastName": "Larsson",
+    "phone": "+46 18 444 88 99",
+    "email": "malin.larsson@example.se",
+    "address": {
+      "streetAddress": "Svartbäcksgatan 19",
+      "postalCode": "753 32",
+      "town": "Uppsala",
+      "country": "Sweden"
+    },
+    "knowledgeList": [6, 7, 12],
+    "courses": []
+  },
+  {
+    "id": "184b26df-a8c1-4b10-85f2-9da5d4ef2399",
+    "firstName": "Björn",
+    "lastName": "Karlsson",
+    "phone": "+46 90 222 33 44",
+    "email": "bjorn.karlsson@example.se",
+    "address": {
+      "streetAddress": "Renmarkstorget 5",
+      "postalCode": "903 26",
+      "town": "Umeå",
+      "country": "Sweden"
+    },
+    "knowledgeList": [4, 9],
+    "courses": []
+  },
+  {
+    "id": "ad8e2199-0b1e-45fa-bb20-03faee2cc421",
+    "firstName": "Freja",
+    "lastName": "Lindqvist",
+    "phone": "+46 60 777 88 11",
+    "email": "freja.lindqvist@example.se",
+    "address": {
+      "streetAddress": "Storgatan 22",
+      "postalCode": "852 30",
+      "town": "Sundsvall",
+      "country": "Sweden"
+    },
+    "knowledgeList": [10, 13, 15],
+    "courses": []
+  },
+  {
+    "id": "52014fb5-d2f1-4fc3-a9d0-6cb4a123f81e",
+    "firstName": "Arvid",
+    "lastName": "Olsson",
+    "phone": "+46 70 999 00 11",
+    "email": "arvid.olsson@example.se",
+    "address": {
+      "streetAddress": "Torggatan 3",
+      "postalCode": "652 24",
+      "town": "Karlstad",
+      "country": "Sweden"
+    },
+    "knowledgeList": [5, 12],
+    "courses": []
+  }
+]

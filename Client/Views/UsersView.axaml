@@ -1,0 +1,56 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Client.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Client.Views.UsersView"
+             x:DataType="vm:UsersViewModel">
+  
+  <Design.DataContext>
+    <vm:UsersViewModel></vm:UsersViewModel>
+  </Design.DataContext>
+
+  <StackPanel Margin="60 20">
+    <TextBlock Classes="h1" Text="{Binding PageTitle}" />
+
+    <StackPanel>
+      <Grid Classes="list" ColumnDefinitions="20, 100, 120, 300, *" Background="{DynamicResource ColorBg2}">
+          <Label Grid.Column="1" Content="Förnamn" />
+          <Label Grid.Column="2" Content="Efternamn" />
+          <Label Grid.Column="3" Content="E-post" />
+          <Button Grid.Column="4" FontFamily="Default" HorizontalAlignment="Left" 
+           Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).GoToCourseNewCommand}" Content="+ Lägg till users" />
+      </Grid>
+
+      <ScrollViewer Height="350">
+
+        <ItemsControl ItemsSource="{Binding Users}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <Grid Classes="list">
+                  <Grid ColumnDefinitions="20, 100, 120, 320, 20, 20" RowDefinitions="Auto, Auto">
+                      <Button Grid.Column="0" Command="{Binding ToggleExpandedCommand}" Content="&#xe2ce;" />
+                      <Label Grid.Column="1" Content="{Binding FirstName}" />
+                      <Label Grid.Column="2" Content="{Binding LastName}" />
+                      <Label Grid.Column="3" Content="{Binding Email}" />
+                      <Button Grid.Column="4" Content="&#xe3b4;" 
+                        Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).GoToCourseEditCommand}"
+                        CommandParameter="{Binding Id}" />
+                      <Button Grid.Column="5" Content="&#xe4a8;" 
+                        Command="{Binding $parent[UserControl].DataContext.DeleteCommand}"
+                        CommandParameter="{Binding Id}" />
+                      <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" IsVisible="{Binding IsExpanded}" Text="{Binding DetailsLines}" />
+                  </Grid>
+              </Grid>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+      </ScrollViewer>
+
+    </StackPanel>
+  </StackPanel>
+
+
+</UserControl>

@@ -27,4 +27,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public void GoToCourseEdit(string interalId) => CurrentView = _pageViewFactory.LoadPageViewModel(ViewTypeEnum.EditCourse, interalId);
     [RelayCommand]
     public void GoToCourseNew() => CurrentView = _pageViewFactory.LoadPageViewModel(ViewTypeEnum.NewCourse);
+    [RelayCommand]
+    public void GoToStudents() => CurrentView = _pageViewFactory.LoadPageViewModel(ViewTypeEnum.Students);
+    public void GoToTeachers() => CurrentView = _pageViewFactory.LoadPageViewModel(ViewTypeEnum.Teachers);
 }
