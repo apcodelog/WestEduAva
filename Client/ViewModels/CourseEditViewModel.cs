@@ -11,22 +11,19 @@ using Client.Enums;
 
 namespace Client.ViewModels;
 
-public partial class CourseEditViewModel : ViewModelBase
+public partial class CourseEditViewModel : ViewModelBase, IEditView
 {
     private readonly IDataObjectService _dataObjectService;
+    private readonly MainWindowViewModel _mainViewModel;
     private string? _dbId;
     private string? _interalId;
+
+    private readonly ViewTypeEnum _previousPage;
 
     [ObservableProperty]
     public partial string CourseNumber { get; set; } = "";
     [ObservableProperty]
     public partial string Title { get; set; } = "";
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(CourseTypeIsOnSite))]
-    [NotifyPropertyChangedFor(nameof(CourseTypeIsOnline))]
-    public partial CourseTypeEnum CourseType { get; set; } = CourseTypeEnum.OnSite;
-    
     [ObservableProperty]
     public partial int Days { get; set; } = 20;
     [ObservableProperty]
@@ -34,8 +31,11 @@ public partial class CourseEditViewModel : ViewModelBase
     [ObservableProperty]
     public partial DateTime EndDate { get; set; } = new DateTime(2027, 01, 31);
 
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(CourseTypeIsOnSite))]
+    [NotifyPropertyChangedFor(nameof(CourseTypeIsOnline))]
+    public partial CourseTypeEnum CourseType { get; set; } = CourseTypeEnum.OnSite;
 
-    
     public bool CourseTypeIsOnSite
     {
         get => CourseType == CourseTypeEnum.OnSite;
@@ -57,13 +57,17 @@ public partial class CourseEditViewModel : ViewModelBase
     public CourseEditViewModel()
     {
         _dataObjectService = new DataObjectService(ViewTypeEnum.Courses);
+        _mainViewModel = new MainWindowViewModel(new Factories.PageViewFactory());
         PageTitle = "Ny / Ändra kurs - For preview during development";
+        _previousPage = ViewTypeEnum.Courses;
     }
 
-    public CourseEditViewModel(DataObjectService dataObjectService, string? internalId)
+    public CourseEditViewModel(MainWindowViewModel mainViewModel, DataObjectService dataObjectService, string? internalId)
     {
+        _mainViewModel = mainViewModel;
         _dataObjectService = dataObjectService;
         _interalId = internalId;
+        _previousPage = ViewTypeEnum.Courses;
 
         if (!string.IsNullOrWhiteSpace(internalId))
         {
@@ -108,5 +112,13 @@ public partial class CourseEditViewModel : ViewModelBase
             await _dataObjectService.Add<Course>(course);
         else
             await _dataObjectService.Update<Course>(course, _dbId);
+
+        _mainViewModel.GoToView(_previousPage);
+    }
+
+    [RelayCommand]
+    public void Cancel()
+    {
+        _mainViewModel.GoToView(_previousPage);
     }
 }

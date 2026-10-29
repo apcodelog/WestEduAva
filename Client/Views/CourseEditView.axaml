@@ -43,7 +43,7 @@
                 <Label Content="Spara" />
             </StackPanel>
         </Button>
-        <Button Classes="nav no" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).GoToCoursesCommand}">
+        <Button Classes="nav no" Command="{Binding CancelCommand}">
             <StackPanel>
                 <Label Content="&#xe4f6;" />
                 <Label Content="Avbryt" />

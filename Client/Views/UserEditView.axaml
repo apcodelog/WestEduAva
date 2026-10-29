@@ -1,0 +1,58 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Client.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Client.Views.UserEditView"
+             x:DataType="vm:UserEditViewModel">
+  
+  <Design.DataContext>
+    <vm:UserEditViewModel></vm:UserEditViewModel>
+  </Design.DataContext>
+
+  <StackPanel Width="400" HorizontalAlignment="Left" Margin="60 40" Spacing="15">
+      <TextBlock Classes="h2" Text="{Binding PageTitle}" />
+      <Grid Classes="form" RowSpacing="5" ColumnSpacing="5" ColumnDefinitions="180, 180" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
+        <Label Grid.Column="0" Grid.Row="0" Content="Kurskod" />
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Title}" />
+        
+        <Label Grid.Column="0" Grid.Row="1" Content="Titel" />
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Title}" />
+
+        <Label Grid.Column="0" Grid.Row="2" Content="Kurstyp" />
+        <StackPanel Grid.Column="1" Grid.Row="2" Spacing="20" Orientation="Horizontal">
+          <RadioButton GroupName="CourseType" Content="På plats" IsChecked="{Binding Title}" />
+          <RadioButton GroupName="CourseType" Content="Online" IsChecked="{Binding Title}" />
+        </StackPanel>
+
+        <Label Grid.Column="0" Grid.Row="3" Content="Antal utbildningsdagar" />
+        <NumericUpDown Grid.Column="1" Grid.Row="3" Minimum="1" Value="1" />
+
+        <Label Grid.Column="0" Grid.Row="4" Content="Startdatum" />
+        <CalendarDatePicker Grid.Column="1" Grid.Row="4" />
+        
+        <Label Grid.Column="0" Grid.Row="5" Content="Slutdatum" />
+        <CalendarDatePicker Grid.Column="1" Grid.Row="5" />
+      </Grid>
+      
+      <StackPanel Orientation="Horizontal" Spacing="40" HorizontalAlignment="Center">
+        <Button Classes="nav yes" Command="{Binding SaveCommand}">
+            <StackPanel>
+                <Label Content="&#xe182;" />
+                <Label Content="Spara" />
+            </StackPanel>
+        </Button>
+        <Button Classes="nav no"
+          Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).GoToViewCommand}"
+          CommandParameter="{Binding PreviousPage}">
+            <StackPanel>
+                <Label Content="&#xe4f6;" />
+                <Label Content="Avbryt" />
+            </StackPanel>
+        </Button>
+      </StackPanel>
+
+    </StackPanel>
+
+</UserControl>

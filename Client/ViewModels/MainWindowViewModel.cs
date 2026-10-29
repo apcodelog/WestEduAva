@@ -20,14 +20,18 @@ public partial class MainWindowViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    public void GoToHome() => CurrentView = _pageViewFactory.LoadPageViewModel(ViewTypeEnum.Home);
+    public void GoToView(ViewTypeEnum viewType) => CurrentView = _pageViewFactory.LoadPageViewModel(this, viewType);
+
     [RelayCommand]
-    public void GoToCourses() => CurrentView = _pageViewFactory.LoadPageViewModel(ViewTypeEnum.Courses);
+    public void GoToHome() => CurrentView = _pageViewFactory.LoadPageViewModel(this, ViewTypeEnum.Home);
     [RelayCommand]
-    public void GoToCourseEdit(string interalId) => CurrentView = _pageViewFactory.LoadPageViewModel(ViewTypeEnum.EditCourse, interalId);
+    public void GoToCourses() => CurrentView = _pageViewFactory.LoadPageViewModel(this, ViewTypeEnum.Courses);
     [RelayCommand]
-    public void GoToCourseNew() => CurrentView = _pageViewFactory.LoadPageViewModel(ViewTypeEnum.NewCourse);
+    public void GoToCourseEdit(string interalId) => CurrentView = _pageViewFactory.LoadPageViewModel(this, ViewTypeEnum.EditCourse, interalId);
     [RelayCommand]
-    public void GoToStudents() => CurrentView = _pageViewFactory.LoadPageViewModel(ViewTypeEnum.Students);
-    public void GoToTeachers() => CurrentView = _pageViewFactory.LoadPageViewModel(ViewTypeEnum.Teachers);
+    public void GoToCourseNew() => CurrentView = _pageViewFactory.LoadPageViewModel(this, ViewTypeEnum.NewCourse);
+    [RelayCommand]
+    public void GoToStudents() => CurrentView = _pageViewFactory.LoadPageViewModel(this, ViewTypeEnum.Students);
+    [RelayCommand]
+    public void GoToTeachers() => CurrentView = _pageViewFactory.LoadPageViewModel(this, ViewTypeEnum.Teachers);
 }
