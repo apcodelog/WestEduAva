@@ -21,14 +21,37 @@ public partial class CourseEditViewModel : ViewModelBase
     public partial string CourseNumber { get; set; } = "";
     [ObservableProperty]
     public partial string Title { get; set; } = "";
+
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(CourseTypeIsOnSite))]
+    [NotifyPropertyChangedFor(nameof(CourseTypeIsOnline))]
     public partial CourseTypeEnum CourseType { get; set; } = CourseTypeEnum.OnSite;
+    
     [ObservableProperty]
     public partial int Days { get; set; } = 20;
     [ObservableProperty]
     public partial DateTime StartDate { get; set; } = new DateTime(2027, 01, 01);
     [ObservableProperty]
     public partial DateTime EndDate { get; set; } = new DateTime(2027, 01, 31);
+
+
+    
+    public bool CourseTypeIsOnSite
+    {
+        get => CourseType == CourseTypeEnum.OnSite;
+        set
+        {
+            if (value == true) CourseType = CourseTypeEnum.OnSite;
+        }
+    }
+    public bool CourseTypeIsOnline
+    {
+        get => CourseType == CourseTypeEnum.Online;
+        set
+        {
+            if (value == true) CourseType = CourseTypeEnum.Online;
+        }
+    }
 
 
     public CourseEditViewModel()

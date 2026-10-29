@@ -13,7 +13,7 @@
 
     <StackPanel Width="400" HorizontalAlignment="Left" Margin="60 40" Spacing="15">
       <TextBlock Classes="h2" Text="{Binding PageTitle}" />
-      <Grid Classes="form" RowSpacing="5" ColumnSpacing="5" ColumnDefinitions="180, 150" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
+      <Grid Classes="form" RowSpacing="5" ColumnSpacing="5" ColumnDefinitions="180, 180" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
         <Label Grid.Column="0" Grid.Row="0" Content="Kurskod" />
         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding CourseNumber}" />
         
@@ -21,7 +21,10 @@
         <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Title}" />
 
         <Label Grid.Column="0" Grid.Row="2" Content="Kurstyp" />
-        <ComboBox Grid.Column="1" Grid.Row="2" />
+        <StackPanel Grid.Column="1" Grid.Row="2" Spacing="20" Orientation="Horizontal">
+          <RadioButton GroupName="CourseType" Content="På plats" IsChecked="{Binding CourseTypeIsOnSite}" />
+          <RadioButton GroupName="CourseType" Content="Online" IsChecked="{Binding CourseTypeIsOnline}" />
+        </StackPanel>
 
         <Label Grid.Column="0" Grid.Row="3" Content="Antal utbildningsdagar" />
         <NumericUpDown Grid.Column="1" Grid.Row="3" Minimum="1" Value="1" />
