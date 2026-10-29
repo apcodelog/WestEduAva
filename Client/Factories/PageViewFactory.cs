@@ -14,8 +14,8 @@ public class PageViewFactory
         return viewType switch
         {
             ViewTypeEnum.Home => new HomeViewModel(),
-            ViewTypeEnum.Courses => new CoursesViewModel(new DataObjectService<CourseAva>()),
-            ViewTypeEnum.NewCourse => new CourseEditViewModel(new DataObjectService<Course>(), new DataObjectService<CourseAva>(), null),
+            ViewTypeEnum.Courses => new CoursesViewModel(new DataObjectService(ViewTypeEnum.Courses)),
+            ViewTypeEnum.NewCourse => new CourseEditViewModel(new DataObjectService(ViewTypeEnum.Courses), null),
             ViewTypeEnum.Students => new UsersViewModel(ViewTypeEnum.Students),
             ViewTypeEnum.Teachers => new UsersViewModel(ViewTypeEnum.Teachers),
             _ => throw new ArgumentOutOfRangeException()
@@ -26,7 +26,7 @@ public class PageViewFactory
     {
         return viewType switch
         {
-            ViewTypeEnum.EditCourse => new CourseEditViewModel(new DataObjectService<Course>(), new DataObjectService<CourseAva>(), internalId),
+            ViewTypeEnum.EditCourse => new CourseEditViewModel(new DataObjectService(ViewTypeEnum.Courses), internalId),
             _ => throw new ArgumentOutOfRangeException()
         };
     }

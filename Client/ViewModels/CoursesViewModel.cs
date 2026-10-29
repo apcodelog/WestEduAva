@@ -8,26 +8,27 @@ using Client.Interfaces;
 using Client.Services;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
+using Client.Enums;
 
 namespace Client.ViewModels;
 
 public partial class CoursesViewModel : ViewModelBase
 {
-    private readonly IDataObjectService<CourseAva> _dataObjectService;
+    private readonly IDataObjectService _dataObjectService;
 
     [ObservableProperty]
     public partial ObservableCollection<CourseAva> Courses { get; set; } = [];
 
     public CoursesViewModel()
     {
-        _dataObjectService = new DataObjectService<CourseAva>();
+        _dataObjectService = new DataObjectService(ViewTypeEnum.Courses);
         PageTitle = "Kurser - From Dev Preview Constructor";
 
         var list = new Storage<CourseAva>().Read(Path.Combine(Directory.GetCurrentDirectory(), "Assets", "TestData_courses.json"));
         Courses = new ObservableCollection<CourseAva>(list);
     }
 
-    public CoursesViewModel(IDataObjectService<CourseAva> dataObjectService)
+    public CoursesViewModel(IDataObjectService dataObjectService)
     {
         _dataObjectService = dataObjectService;
         PageTitle = "Kurser";
@@ -44,10 +45,10 @@ public partial class CoursesViewModel : ViewModelBase
     {
         try
         {
-            CourseAva course = await _dataObjectService.Find("id", interalId);
+            CourseAva course = await _dataObjectService.Find<CourseAva>("id", interalId);
             if (course is not null)
             {
-                await _dataObjectService.Delete(course._id);
+                await _dataObjectService.Delete<Course>(course._id);
                 await LoadCourses();
             }
         }
@@ -61,7 +62,7 @@ public partial class CoursesViewModel : ViewModelBase
     {
         try
         {
-            Courses = new ObservableCollection<CourseAva>(await _dataObjectService.List());
+            Courses = new ObservableCollection<CourseAva>(await _dataObjectService.List<CourseAva>());
         }
         catch (Exception ex)
         {

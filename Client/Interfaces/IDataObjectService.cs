@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Client.Interfaces;
 
-public interface IDataObjectService<T> where T : class
+public interface IDataObjectService
 {
-    Task Add(T data);
-    Task Delete(string dbId);
-    Task<T> Find(string parameter, string value);
-    Task<List<T>> List();
-    Task Update(T data, string dbId);
+    Task Add<T>(T data) where T : class;
+    Task Delete<T>(string dbId) where T : class;
+    Task<T> Find<T>(string parameter, string value) where T : class;
+    Task<List<T>> List<T>() where T : class;
+    Task Update<T>(T data, string dbId) where T : class;
 }

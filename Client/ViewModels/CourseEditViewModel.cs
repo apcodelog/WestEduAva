@@ -7,12 +7,13 @@ using Core.Enums;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using Core.Models;
+using Client.Enums;
 
 namespace Client.ViewModels;
 
 public partial class CourseEditViewModel : ViewModelBase
 {
-    private readonly (IDataObjectService<Course> normal, IDataObjectService<CourseAva> ava) _dataObjectService;
+    private readonly IDataObjectService _dataObjectService;
     private string? _dbId;
     private string? _interalId;
 
@@ -32,13 +33,13 @@ public partial class CourseEditViewModel : ViewModelBase
 
     public CourseEditViewModel()
     {
-        _dataObjectService = (new DataObjectService<Course>(), new DataObjectService<CourseAva>());
+        _dataObjectService = new DataObjectService(ViewTypeEnum.Courses);
         PageTitle = "Ny / Ändra kurs - For preview during development";
     }
 
-    public CourseEditViewModel(IDataObjectService<Course> dataObjectService, DataObjectService<CourseAva> dataObjectServiceAva, string? internalId)
+    public CourseEditViewModel(DataObjectService dataObjectService, string? internalId)
     {
-        _dataObjectService = (dataObjectService, dataObjectServiceAva);
+        _dataObjectService = dataObjectService;
         _interalId = internalId;
 
         if (!string.IsNullOrWhiteSpace(internalId))
@@ -55,7 +56,7 @@ public partial class CourseEditViewModel : ViewModelBase
     public async void Init() => await GetCourse();
     private async Task GetCourse()
     {
-        var course = await _dataObjectService.ava.Find("id", _interalId!); // Id expected to not be null
+        var course = await _dataObjectService.Find<CourseAva>("id", _interalId!); // Id expected to not be null
 
         _dbId = course._id;
 
@@ -81,8 +82,8 @@ public partial class CourseEditViewModel : ViewModelBase
         };
 
         if (string.IsNullOrWhiteSpace(_dbId))
-            await _dataObjectService.normal.Add(course);
+            await _dataObjectService.Add<Course>(course);
         else
-            await _dataObjectService.normal.Update(course, _dbId);
+            await _dataObjectService.Update<Course>(course, _dbId);
     }
 }
