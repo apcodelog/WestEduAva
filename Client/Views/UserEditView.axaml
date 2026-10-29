@@ -11,30 +11,50 @@
     <vm:UserEditViewModel></vm:UserEditViewModel>
   </Design.DataContext>
 
-  <StackPanel Width="400" HorizontalAlignment="Left" Margin="60 40" Spacing="15">
+  <StackPanel Width="500" HorizontalAlignment="Left" Margin="60 40" Spacing="15">
       <TextBlock Classes="h2" Text="{Binding PageTitle}" />
-      <Grid Classes="form" RowSpacing="5" ColumnSpacing="5" ColumnDefinitions="180, 180" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
-        <Label Grid.Column="0" Grid.Row="0" Content="Kurskod" />
-        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Title}" />
-        
-        <Label Grid.Column="0" Grid.Row="1" Content="Titel" />
-        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Title}" />
-
-        <Label Grid.Column="0" Grid.Row="2" Content="Kurstyp" />
-        <StackPanel Grid.Column="1" Grid.Row="2" Spacing="20" Orientation="Horizontal">
-          <RadioButton GroupName="CourseType" Content="På plats" IsChecked="{Binding Title}" />
-          <RadioButton GroupName="CourseType" Content="Online" IsChecked="{Binding Title}" />
+      <UniformGrid Columns="3" ColumnSpacing="20">
+        <StackPanel>
+          <Label Grid.Column="0" Grid.Row="0" Content="Förnamn" />
+          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding FirstName}" />
         </StackPanel>
-
-        <Label Grid.Column="0" Grid.Row="3" Content="Antal utbildningsdagar" />
-        <NumericUpDown Grid.Column="1" Grid.Row="3" Minimum="1" Value="1" />
-
-        <Label Grid.Column="0" Grid.Row="4" Content="Startdatum" />
-        <CalendarDatePicker Grid.Column="1" Grid.Row="4" />
-        
-        <Label Grid.Column="0" Grid.Row="5" Content="Slutdatum" />
-        <CalendarDatePicker Grid.Column="1" Grid.Row="5" />
-      </Grid>
+        <StackPanel>
+          <Label Grid.Column="0" Grid.Row="0" Content="Efternamn" />
+          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding LastName}" />
+        </StackPanel>
+        <StackPanel>
+          <Label Grid.Column="0" Grid.Row="0" Content="Personnummer" IsVisible="{Binding SSNEnabled}" />
+          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SSN}" IsVisible="{Binding SSNEnabled}" />
+        </StackPanel>
+        <StackPanel>
+          <Label Grid.Column="0" Grid.Row="0" Content="E-post" />
+          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Email}" />
+        </StackPanel>
+        <StackPanel>
+          <Label Grid.Column="0" Grid.Row="0" Content="Telefon" />
+          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Phone}" />
+        </StackPanel>
+      </UniformGrid>
+      <UniformGrid Columns="3" ColumnSpacing="20">
+        <StackPanel>
+          <Label Grid.Column="0" Grid.Row="0" Content="Address" />
+          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Address.StreetAddress}" />
+        </StackPanel>
+        <Label /> <!-- spacer -->
+        <Label /> <!-- spacer -->
+        <StackPanel>
+          <Label Grid.Column="0" Grid.Row="0" Content="Postkod" />
+          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Address.PostalCode}" />
+        </StackPanel>
+        <StackPanel>
+          <Label Grid.Column="0" Grid.Row="0" Content="Ort" />
+          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Address.Town}" />
+        </StackPanel>
+        <StackPanel>
+          <Label Grid.Column="0" Grid.Row="0" Content="Land" />
+          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Address.Country}" />
+        </StackPanel>
+      </UniformGrid>
       
       <StackPanel Orientation="Horizontal" Spacing="40" HorizontalAlignment="Center">
         <Button Classes="nav yes" Command="{Binding SaveCommand}">
@@ -43,9 +63,7 @@
                 <Label Content="Spara" />
             </StackPanel>
         </Button>
-        <Button Classes="nav no"
-          Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).GoToViewCommand}"
-          CommandParameter="{Binding PreviousPage}">
+        <Button Classes="nav no" Command="{Binding CancelCommand}">
             <StackPanel>
                 <Label Content="&#xe4f6;" />
                 <Label Content="Avbryt" />

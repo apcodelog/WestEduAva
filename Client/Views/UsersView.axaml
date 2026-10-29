@@ -20,7 +20,7 @@
           <Label Grid.Column="2" Content="Efternamn" />
           <Label Grid.Column="3" Content="E-post" />
           <Button Grid.Column="4" FontFamily="Default" HorizontalAlignment="Left" 
-           Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).GoToCourseNewCommand}" Content="+ Lägg till users" />
+           Command="{Binding GoToAddUserViewCommand}" Content="{Binding AddObjectButtonText}" />
       </Grid>
 
       <ScrollViewer Height="350">
@@ -35,7 +35,7 @@
                       <Label Grid.Column="2" Content="{Binding LastName}" />
                       <Label Grid.Column="3" Content="{Binding Email}" />
                       <Button Grid.Column="4" Content="&#xe3b4;" 
-                        Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).GoToCourseEditCommand}"
+                        Command="{Binding $parent[UserControl].DataContext.GoToEditUserViewCommand}"
                         CommandParameter="{Binding Id}" />
                       <Button Grid.Column="5" Content="&#xe4a8;" 
                         Command="{Binding $parent[UserControl].DataContext.DeleteCommand}"

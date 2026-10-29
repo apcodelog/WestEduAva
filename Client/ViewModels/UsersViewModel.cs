@@ -16,17 +16,14 @@ namespace Client.ViewModels;
 
 public partial class UsersViewModel : ViewModelBase
 {
-    private readonly Dictionary<ViewTypeEnum, (string pageTitle, string resource)> pageTitleMap = new Dictionary<ViewTypeEnum, (string pageTitle, string resource)>
-    {
-        {ViewTypeEnum.Students, ("Elever", "students")},
-        {ViewTypeEnum.Teachers, ("Lärare", "teachers")}
-    };
-
+    private readonly MainWindowViewModel _mainViewModel;
     private readonly IDataObjectService _dataObjectService;
     private readonly ViewTypeEnum _viewType;
 
     [ObservableProperty]
     public partial ObservableCollection<IUserAva> Users { get; set; } = [];
+
+    public string AddObjectButtonText => "+ Lägg till " + _dataObjectService.PageTitleSingular.ToLowerInvariant();
 
     public UsersViewModel()
     {
@@ -34,9 +31,10 @@ public partial class UsersViewModel : ViewModelBase
 
         _viewType = viewType;
         _dataObjectService = new DataObjectService(viewType);
-        var info = pageTitleMap[viewType];
-        var path = Path.Combine(Directory.GetCurrentDirectory(), "Assets", $"TestData_{info.resource}.json");
-        PageTitle = info.pageTitle + " - For development preview";
+        _mainViewModel = new MainWindowViewModel(new Factories.PageViewFactory());
+
+        var path = Path.Combine(Directory.GetCurrentDirectory(), "Assets", $"TestData_{_dataObjectService.Resource}.json");
+        PageTitle = _dataObjectService.PageTitlePlural + " - For development preview";
 
         var list = viewType switch
         {
@@ -47,12 +45,12 @@ public partial class UsersViewModel : ViewModelBase
         Users = new ObservableCollection<IUserAva>(list);
     }
 
-    public UsersViewModel(ViewTypeEnum viewType)
+    public UsersViewModel(MainWindowViewModel mainViewModel, ViewTypeEnum viewType)
     {
         _viewType = viewType;
         _dataObjectService = new DataObjectService(viewType);
-        var info = pageTitleMap[viewType];
-        PageTitle = info.pageTitle;
+        _mainViewModel = mainViewModel;
+        PageTitle = _dataObjectService.PageTitlePlural;
 
         Init();
     }
@@ -78,5 +76,28 @@ public partial class UsersViewModel : ViewModelBase
     public async Task Delete(string internalId)
     {
         Console.WriteLine("Not implemented");
+    }
+
+    [RelayCommand]
+    public void GoToAddUserView()
+    {
+        _mainViewModel.GoToView(_viewType switch
+        {
+            ViewTypeEnum.Students => ViewTypeEnum.NewStudent,
+            ViewTypeEnum.Teachers => ViewTypeEnum.NewTeacher,
+            _ => throw new ArgumentOutOfRangeException(nameof(_viewType), _viewType, null)
+        });
+    }
+
+    [RelayCommand]
+    public void GoToEditUserView(string interalId)
+    {
+        var targetViewType = _viewType switch
+        {
+            ViewTypeEnum.Students => ViewTypeEnum.EditStudent,
+            ViewTypeEnum.Teachers => ViewTypeEnum.EditTeacher,
+            _ => throw new ArgumentOutOfRangeException(nameof(_viewType), _viewType, null)
+        };
+        _mainViewModel.GoToView(targetViewType, interalId);
     }
 }

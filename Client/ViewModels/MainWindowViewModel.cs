@@ -21,6 +21,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     [RelayCommand]
     public void GoToView(ViewTypeEnum viewType) => CurrentView = _pageViewFactory.LoadPageViewModel(this, viewType);
+    public void GoToView(ViewTypeEnum viewType, string internalId) => CurrentView = _pageViewFactory.LoadPageViewModel(this, viewType, internalId);
 
     [RelayCommand]
     public void GoToHome() => CurrentView = _pageViewFactory.LoadPageViewModel(this, ViewTypeEnum.Home);

@@ -7,6 +7,10 @@ namespace Client.Interfaces;
 
 public interface IDataObjectService
 {
+    public string Resource { get; }
+    public string PageTitleSingular { get; }
+    public string PageTitlePlural { get; }
+
     Task Add<T>(T data) where T : class;
     Task Delete<T>(string dbId) where T : class;
     Task<T> Find<T>(string parameter, string value) where T : class;

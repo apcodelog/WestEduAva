@@ -3,9 +3,16 @@ namespace Client.Enums;
 public enum ViewTypeEnum
 {
     Home,
+
     Courses,
     EditCourse,
     NewCourse,
+
     Students,
-    Teachers
+    EditStudent,
+    NewStudent,
+
+    Teachers,
+    EditTeacher,
+    NewTeacher
 }

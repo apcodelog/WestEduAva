@@ -11,50 +11,67 @@ namespace Client.Services;
 
 public class DataObjectService : IDataObjectService
 {
-    private readonly string _resource;
+    public string Resource { get; }
+
+    public string PageTitleSingular { get; }
+
+    public string PageTitlePlural { get; }
 
     public DataObjectService(ViewTypeEnum viewType)
     {
-        _resource = viewType switch
+        switch (viewType)
         {
-            ViewTypeEnum.Courses => "courses",
+            case ViewTypeEnum.Courses:
+                Resource = "courses";
+                PageTitleSingular = "Kurs";
+                PageTitlePlural = "Kurser";
+                break;
 
-            ViewTypeEnum.Students => "students",
+            case ViewTypeEnum.Students:
+                Resource = "students";
+                PageTitleSingular = "Elev";
+                PageTitlePlural = "Elever";
+                break;
 
-            ViewTypeEnum.Teachers => "teachers",
+            case ViewTypeEnum.Teachers:
+                Resource = "teachers";
+                PageTitleSingular = "Lärare";
+                PageTitlePlural = "Lärare";
+                break;
 
-            _ => throw new ArgumentOutOfRangeException()
-        };
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     public async Task Add<T>(T data) where T : class
     {
         var httpService = new HttpService<T>();
-        await httpService.Post(_resource, data);
+        await httpService.Post(Resource, data);
     }
 
     public async Task Delete<T>(string dbId) where T : class
     {
         var httpService = new HttpService<T>();
-        await httpService.Delete(_resource, dbId);
+        await httpService.Delete(Resource, dbId);
     }
 
     public async Task<T> Find<T>(string parameter, string value) where T : class
     {
         var httpService = new HttpService<T>();
         var searchCriteria = "{" + $"\"{parameter}\":\"{value}\"" + "}";
-        return await httpService.Get(_resource, searchCriteria);
+        return await httpService.Get(Resource, searchCriteria);
     }
 
     public async Task<List<T>> List<T>() where T : class
     {
         var httpService = new HttpService<T>();
-        return await httpService.Get(_resource);
+        return await httpService.Get(Resource);
     }
 
     public async Task Update<T>(T data, string dbId) where T : class
     {
         var httpService = new HttpService<T>();
-        await httpService.Put(_resource, data, dbId);
+        await httpService.Put(Resource, data, dbId);
     }
 }
