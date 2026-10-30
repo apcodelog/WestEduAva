@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Client.Enums;
 using Client.Interfaces;
@@ -27,8 +29,10 @@ public partial class UserEditViewModel : ViewModelBase, IEditView
     public partial string SSN { get; set; } = "";
     [ObservableProperty]
     public partial string Phone { get; set; } = "";
+
     [ObservableProperty]
     public partial string Email { get; set; } = "";
+    
     [ObservableProperty]
     public partial Address Address { get; set; } = new Address() {StreetAddress = "", PostalCode = "", Town = "", Country = ""};
 
@@ -99,9 +103,30 @@ public partial class UserEditViewModel : ViewModelBase, IEditView
         }
     }
 
+    private bool IsValidEmail(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+            return false;
+
+        foreach (char c in input)
+        {
+            if (!char.IsLetterOrDigit(c) && c != '.' && c != '@')
+                return false;
+        }
+
+        var split = input.Split('@');
+        return split.Length == 2 && split[1].Contains('.');
+    }
+
     [RelayCommand]
     public async Task Save()
     {
+        if (!IsValidEmail(Email))
+        {
+            Console.WriteLine("Invalid email");
+            return;
+        }
+
         if (_previousPage == ViewTypeEnum.Students)
         {
             Student student = new Student()
