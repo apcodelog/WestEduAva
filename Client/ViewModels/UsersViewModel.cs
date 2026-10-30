@@ -11,6 +11,7 @@ using Client.Enums;
 using Client.Interfaces;
 using System.Linq;
 using Client.Services;
+using Core.Models.Users;
 
 namespace Client.ViewModels;
 
@@ -20,6 +21,11 @@ public partial class UsersViewModel : ViewModelBase
     private readonly IDataObjectService _dataObjectService;
     private readonly ViewTypeEnum _viewType;
 
+    private readonly Dictionary<ViewTypeEnum, Func<Task<IEnumerable<IUserAva>>>> _loadMap = new();
+    private readonly Dictionary<ViewTypeEnum, Func<string, Task>> _deleteMap = new();
+    private readonly Dictionary<ViewTypeEnum, ViewTypeEnum> _goToAddMap = new();
+    private readonly Dictionary<ViewTypeEnum, ViewTypeEnum> _goToEditMap = new();
+
     [ObservableProperty]
     public partial ObservableCollection<IUserAva> Users { get; set; } = [];
 
@@ -27,6 +33,9 @@ public partial class UsersViewModel : ViewModelBase
 
     public UsersViewModel()
     {
+        MapsInit();
+
+        // Uses students viewtype as example for development preview
         var viewType = ViewTypeEnum.Students;
 
         _viewType = viewType;
@@ -36,23 +45,35 @@ public partial class UsersViewModel : ViewModelBase
         var path = Path.Combine(Directory.GetCurrentDirectory(), "Assets", $"TestData_{_dataObjectService.Resource}.json");
         PageTitle = _dataObjectService.PageTitlePlural + " - For development preview";
 
-        var list = viewType switch
-        {
-            ViewTypeEnum.Students => new Storage<StudentAva>().Read(path).Cast<IUserAva>(),
-            ViewTypeEnum.Teachers => new Storage<TeacherAva>().Read(path).Cast<IUserAva>(),
-            _ => throw new ArgumentOutOfRangeException()
-        };
+        var list = new Storage<StudentAva>().Read(path).Cast<IUserAva>();
         Users = new ObservableCollection<IUserAva>(list);
     }
 
     public UsersViewModel(MainWindowViewModel mainViewModel, ViewTypeEnum viewType)
     {
+        MapsInit();
+
         _viewType = viewType;
         _dataObjectService = new DataObjectService(viewType);
         _mainViewModel = mainViewModel;
         PageTitle = _dataObjectService.PageTitlePlural;
 
         Init();
+    }
+
+    private void MapsInit()
+    {
+        _loadMap[ViewTypeEnum.Students] = async () => (await _dataObjectService.List<StudentAva>()).Cast<IUserAva>();
+        _loadMap[ViewTypeEnum.Teachers] = async () => (await _dataObjectService.List<TeacherAva>()).Cast<IUserAva>();
+
+        _deleteMap[ViewTypeEnum.Students] = (id) => DeleteFinish<StudentAva, Student>(id);
+        _deleteMap[ViewTypeEnum.Teachers] = (id) => DeleteFinish<TeacherAva, Teacher>(id);
+
+        _goToAddMap[ViewTypeEnum.Students] = ViewTypeEnum.NewStudent;
+        _goToAddMap[ViewTypeEnum.Teachers] = ViewTypeEnum.NewTeacher;
+
+        _goToEditMap[ViewTypeEnum.Students] = ViewTypeEnum.EditStudent;
+        _goToEditMap[ViewTypeEnum.Teachers] = ViewTypeEnum.EditTeacher;
     }
 
     private async void Init()
@@ -62,42 +83,43 @@ public partial class UsersViewModel : ViewModelBase
 
     private async Task LoadUsers()
     {
-        var list = _viewType switch
-        {
-            ViewTypeEnum.Students => (await _dataObjectService.List<StudentAva>()).Cast<IUserAva>(),
-            ViewTypeEnum.Teachers => (await _dataObjectService.List<TeacherAva>()).Cast<IUserAva>(),
-
-            _ => throw new ArgumentOutOfRangeException()
-        };
+        var list = await _loadMap[_viewType]();
         Users = new ObservableCollection<IUserAva>(list);
     }
 
     [RelayCommand]
     public async Task Delete(string internalId)
     {
-        Console.WriteLine("Not implemented");
+        await _deleteMap[_viewType](internalId);
+    }
+    public async Task DeleteFinish<TAva, T>(string internalId) 
+        where TAva : class, IUserAva 
+        where T : class
+    {
+        try
+        {
+            TAva user = await _dataObjectService.Find<TAva>("id", internalId);
+            if (user is not null)
+            {
+                await _dataObjectService.Delete<T>(user._id);
+                await LoadUsers();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 
     [RelayCommand]
     public void GoToAddUserView()
     {
-        _mainViewModel.GoToView(_viewType switch
-        {
-            ViewTypeEnum.Students => ViewTypeEnum.NewStudent,
-            ViewTypeEnum.Teachers => ViewTypeEnum.NewTeacher,
-            _ => throw new ArgumentOutOfRangeException(nameof(_viewType), _viewType, null)
-        });
+        _mainViewModel.GoToView(_goToAddMap[_viewType]);
     }
 
     [RelayCommand]
     public void GoToEditUserView(string interalId)
     {
-        var targetViewType = _viewType switch
-        {
-            ViewTypeEnum.Students => ViewTypeEnum.EditStudent,
-            ViewTypeEnum.Teachers => ViewTypeEnum.EditTeacher,
-            _ => throw new ArgumentOutOfRangeException(nameof(_viewType), _viewType, null)
-        };
-        _mainViewModel.GoToView(targetViewType, interalId);
+        _mainViewModel.GoToView(_goToEditMap[_viewType], interalId);
     }
 }
