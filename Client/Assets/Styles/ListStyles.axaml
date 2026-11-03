@@ -14,6 +14,7 @@
                     <Label Grid.Column="2" Content="C# Grunder" />
                     <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Text="Längd: 50 dagar &#x0a;På plats" />
                 </Grid>
+                <Border />
             </Grid>
         </StackPanel>
     </Border>
@@ -35,5 +36,11 @@
     <Setter Property="Padding" Value="0" />
     <Setter Property="HorizontalAlignment" Value="Center" />
     <Setter Property="FontFamily" Value="{DynamicResource IconFont}" />
+  </Style>
+
+  <Style Selector="Grid.list Border" >
+    <Setter Property="BorderThickness" Value="0 0 0 1" />
+    <Setter Property="Opacity" Value=".5" />
+    <Setter Property="BorderBrush" Value="{DynamicResource ColorText1}" />
   </Style>
 </Styles>

@@ -40,6 +40,7 @@
                         CommandParameter="{Binding Id}" />
                       <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" IsVisible="{Binding IsExpanded}" Text="{Binding DetailsLines}" />
                   </Grid>
+                  <Border />
               </Grid>
             </DataTemplate>
           </ItemsControl.ItemTemplate>

@@ -15,13 +15,15 @@
     <TextBlock Classes="h1" Text="{Binding PageTitle}" />
 
     <StackPanel>
-      <Grid Classes="list" ColumnDefinitions="20, 100, 120, 300, *" Background="{DynamicResource ColorBg2}">
-          <Label Grid.Column="1" Content="Förnamn" />
-          <Label Grid.Column="2" Content="Efternamn" />
-          <Label Grid.Column="3" Content="E-post" />
-          <Button Grid.Column="4" FontFamily="Default" HorizontalAlignment="Left" 
-           Command="{Binding GoToAddUserViewCommand}" Content="{Binding AddObjectButtonText}" />
-      </Grid>
+      <Border Background="{DynamicResource ColorBg2}">
+        <Grid HorizontalAlignment="Left" Width="600" Classes="list" ColumnDefinitions="20, 100, 120, 200, *">
+            <Label Grid.Column="1" Content="Förnamn" />
+            <Label Grid.Column="2" Content="Efternamn" />
+            <Label Grid.Column="3" Content="E-post" />
+            <Button Grid.Column="4" FontFamily="Default"  HorizontalAlignment="Right" 
+             Command="{Binding GoToAddUserViewCommand}" Content="{Binding AddObjectButtonText}" />
+        </Grid>
+      </Border>
 
       <ScrollViewer Height="350">
 
@@ -42,6 +44,7 @@
                         CommandParameter="{Binding Id}" />
                       <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" IsVisible="{Binding IsExpanded}" Text="{Binding DetailsLines}" />
                   </Grid>
+                  <Border />
               </Grid>
             </DataTemplate>
           </ItemsControl.ItemTemplate>
