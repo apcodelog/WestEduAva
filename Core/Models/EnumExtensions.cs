@@ -12,4 +12,11 @@ public static class EnumExtensions
         CourseTypeEnum.Online => "Online",
         _ => throw new ArgumentOutOfRangeException(nameof(type), type, "Oväntat värde")
     };
+
+    public static string ToSwedish(this KnowledgeTagEnum type) => type switch
+    {
+        KnowledgeTagEnum.Unknown => "Inget värde",
+        KnowledgeTagEnum.CSharp => "C#",
+        _ => type.ToString()
+    };
 }

@@ -1,6 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Client.Enums;
 using Client.Interfaces;
@@ -8,6 +12,7 @@ using Client.Models;
 using Client.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Core.Enums;
 using Core.Models;
 using Core.Models.Users;
 
@@ -36,7 +41,10 @@ public partial class UserEditViewModel : ViewModelBase, IEditView
     [ObservableProperty]
     public partial Address Address { get; set; } = new Address() {StreetAddress = "", PostalCode = "", Town = "", Country = ""};
 
-    public bool SSNEnabled => _previousPage == ViewTypeEnum.Students;
+    public ObservableCollection<KnowledgeTagAva> KnowledgeTags { get; set; }
+
+    public bool ShowingStudent => _previousPage == ViewTypeEnum.Students;
+    public bool ShowingTeacher => _previousPage == ViewTypeEnum.Teachers;
 
     public UserEditViewModel()
     {
@@ -44,6 +52,8 @@ public partial class UserEditViewModel : ViewModelBase, IEditView
         _previousPage = ViewTypeEnum.Students;
         _mainViewModel = new MainWindowViewModel(new Factories.PageViewFactory());
         _dataObjectService = new DataObjectService(ViewTypeEnum.Students);
+
+        KnowledgeTags = new(Enum.GetValues<KnowledgeTagEnum>().Skip(1).Select(o => new KnowledgeTagAva(o, false)));
     }
 
     public UserEditViewModel(MainWindowViewModel mainViewModel, ViewTypeEnum previousPage, string? internalId)
@@ -52,6 +62,8 @@ public partial class UserEditViewModel : ViewModelBase, IEditView
         _dataObjectService = new DataObjectService(previousPage);
         _previousPage = previousPage;
         _internalId = internalId;
+
+        KnowledgeTags = new(Enum.GetValues<KnowledgeTagEnum>().Skip(1).Select(o => new KnowledgeTagAva(o, false)));
 
         if (string.IsNullOrWhiteSpace(_internalId))
         {
@@ -69,7 +81,7 @@ public partial class UserEditViewModel : ViewModelBase, IEditView
     {
         if (_previousPage == ViewTypeEnum.Students)
         {
-            var user = await _dataObjectService.Find<StudentAva>("id", _internalId!); // Id expected to not be null
+            var user = await _dataObjectService.Find<StudentAva>("id", _internalId!);
 
             _dbId = user._id;
 
@@ -85,7 +97,7 @@ public partial class UserEditViewModel : ViewModelBase, IEditView
         }
         else if (_previousPage == ViewTypeEnum.Teachers)
         {
-            var user = await _dataObjectService.Find<TeacherAva>("id", _internalId!); // Id expected to not be null
+            var user = await _dataObjectService.Find<TeacherAva>("id", _internalId!);
 
             _dbId = user._id;
 
@@ -96,6 +108,13 @@ public partial class UserEditViewModel : ViewModelBase, IEditView
             
             if (user.Address != null)
                 Address = user.Address;
+
+            if (user.KnowledgeList != null)
+            {
+                KnowledgeTags.Clear();
+                foreach (var t in Enum.GetValues<KnowledgeTagEnum>().Skip(1).Select(o => new KnowledgeTagAva(o, user.KnowledgeList.Contains(o))))
+                    KnowledgeTags.Add(t);
+            }
         }
         else
         {
@@ -149,8 +168,10 @@ public partial class UserEditViewModel : ViewModelBase, IEditView
                 LastName = LastName,
                 Email = Email,
                 Phone = Phone,
-                Address = Address
+                Address = Address,
+                KnowledgeList = KnowledgeTags.Where(o => o.IsChecked).Select(o => o.Tag).ToList()
             };
+
             await SaveAndReturn<Teacher>(teacher);
         }
         else

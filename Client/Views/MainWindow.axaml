@@ -19,25 +19,25 @@
                 <Button Classes="nav" Command="{Binding GoToHomeCommand}">
                     <StackPanel>
                         <Label Content="&#xe2c2;" />
-                        <Label Content="Home" />
+                        <Label Content="Startsida" />
                     </StackPanel>
                 </Button>
                 <Button Classes="nav" Command="{Binding GoToCoursesCommand}">
                     <StackPanel>
                         <Label Content="&#xe5fe;" />
-                        <Label Content="Courses" />
+                        <Label Content="Kurser" />
                     </StackPanel>
                 </Button>
                 <Button Classes="nav" Command="{Binding GoToStudents}">
                     <StackPanel>
                         <Label Content="&#xe62c;" />
-                        <Label Content="Students" />
+                        <Label Content="Elever" />
                     </StackPanel>
                 </Button>
                 <Button Classes="nav" Command="{Binding GoToTeachers}">
                     <StackPanel>
                         <Label Content="&#xe516;" />
-                        <Label Content="Teachers" />
+                        <Label Content="Lärare" />
                     </StackPanel>
                 </Button>
             </StackPanel>

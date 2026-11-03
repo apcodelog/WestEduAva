@@ -11,50 +11,66 @@
     <vm:UserEditViewModel></vm:UserEditViewModel>
   </Design.DataContext>
 
-  <StackPanel Width="500" HorizontalAlignment="Left" Margin="60 40" Spacing="15">
+  <StackPanel Width="700" HorizontalAlignment="Left" Margin="60 40" Spacing="15">
       <TextBlock Classes="h2" Text="{Binding PageTitle}" />
-      <UniformGrid Columns="3" ColumnSpacing="20">
-        <StackPanel>
-          <Label Grid.Column="0" Grid.Row="0" Content="Förnamn" />
-          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding FirstName}" />
+      <Grid RowSpacing="20" ColumnSpacing="20" ColumnDefinitions="*, 150" RowDefinitions="120, 120">
+        <UniformGrid Columns="3" ColumnSpacing="20">
+          <StackPanel>
+            <Label Grid.Column="0" Grid.Row="0" Content="Förnamn" />
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding FirstName}" />
+          </StackPanel>
+          <StackPanel>
+            <Label Grid.Column="0" Grid.Row="0" Content="Efternamn" />
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding LastName}" />
+          </StackPanel>
+          <StackPanel>
+            <Label Grid.Column="0" Grid.Row="0" Content="Personnummer" IsVisible="{Binding ShowingStudent}" />
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SSN}" IsVisible="{Binding ShowingStudent}" />
+          </StackPanel>
+          <StackPanel>
+            <Label Grid.Column="0" Grid.Row="0" Content="E-post" />
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Email}" />
+          </StackPanel>
+          <StackPanel>
+            <Label Grid.Column="0" Grid.Row="0" Content="Telefon" />
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Phone}" />
+          </StackPanel>
+        </UniformGrid>
+        <UniformGrid Grid.Row="1" Columns="3" ColumnSpacing="20">
+          <StackPanel>
+            <Label Grid.Column="0" Grid.Row="0" Content="Address" />
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Address.StreetAddress}" />
+          </StackPanel>
+          <Label /> <!-- spacer -->
+          <Label /> <!-- spacer -->
+          <StackPanel>
+            <Label Grid.Column="0" Grid.Row="0" Content="Postkod" />
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Address.PostalCode}" />
+          </StackPanel>
+          <StackPanel>
+            <Label Grid.Column="0" Grid.Row="0" Content="Ort" />
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Address.Town}" />
+          </StackPanel>
+          <StackPanel>
+            <Label Grid.Column="0" Grid.Row="0" Content="Land" />
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Address.Country}" />
+          </StackPanel>
+        </UniformGrid>
+
+        <StackPanel Grid.Column="1" Grid.RowSpan="2" IsVisible="{Binding ShowingTeacher}">
+          <Label Content="Kunskapsområden" />
+          <ScrollViewer Height="220">
+            <ItemsControl ItemsSource="{Binding KnowledgeTags}">
+              <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                      <CheckBox IsChecked="{Binding IsChecked}" Content="{Binding ToSwedish}"/>
+                  </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </ScrollViewer>
         </StackPanel>
-        <StackPanel>
-          <Label Grid.Column="0" Grid.Row="0" Content="Efternamn" />
-          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding LastName}" />
-        </StackPanel>
-        <StackPanel>
-          <Label Grid.Column="0" Grid.Row="0" Content="Personnummer" IsVisible="{Binding SSNEnabled}" />
-          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SSN}" IsVisible="{Binding SSNEnabled}" />
-        </StackPanel>
-        <StackPanel>
-          <Label Grid.Column="0" Grid.Row="0" Content="E-post" />
-          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Email}" />
-        </StackPanel>
-        <StackPanel>
-          <Label Grid.Column="0" Grid.Row="0" Content="Telefon" />
-          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Phone}" />
-        </StackPanel>
-      </UniformGrid>
-      <UniformGrid Columns="3" ColumnSpacing="20">
-        <StackPanel>
-          <Label Grid.Column="0" Grid.Row="0" Content="Address" />
-          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Address.StreetAddress}" />
-        </StackPanel>
-        <Label /> <!-- spacer -->
-        <Label /> <!-- spacer -->
-        <StackPanel>
-          <Label Grid.Column="0" Grid.Row="0" Content="Postkod" />
-          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Address.PostalCode}" />
-        </StackPanel>
-        <StackPanel>
-          <Label Grid.Column="0" Grid.Row="0" Content="Ort" />
-          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Address.Town}" />
-        </StackPanel>
-        <StackPanel>
-          <Label Grid.Column="0" Grid.Row="0" Content="Land" />
-          <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Address.Country}" />
-        </StackPanel>
-      </UniformGrid>
+
+      </Grid>
       
       <StackPanel Orientation="Horizontal" Spacing="40" HorizontalAlignment="Center">
         <Button Classes="nav yes" Command="{Binding SaveCommand}">
