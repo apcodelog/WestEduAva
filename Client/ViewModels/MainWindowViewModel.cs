@@ -13,6 +13,9 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     public partial ViewModelBase CurrentView { get; set; } = new();
 
+    [ObservableProperty]
+    public partial bool IsBusy { get; set; } = false;
+
     public MainWindowViewModel(PageViewFactory pageViewFactory)
     {
         _pageViewFactory = pageViewFactory;

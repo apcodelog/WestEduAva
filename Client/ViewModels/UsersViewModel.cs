@@ -26,8 +26,13 @@ public partial class UsersViewModel : ViewModelBase
     private readonly Dictionary<ViewTypeEnum, ViewTypeEnum> _goToAddMap = new();
     private readonly Dictionary<ViewTypeEnum, ViewTypeEnum> _goToEditMap = new();
 
+    private string _deleteTargetId = "";
+
     [ObservableProperty]
     public partial ObservableCollection<IUserAva> Users { get; set; } = [];
+
+    [ObservableProperty]
+    public partial bool PopupVisible { get; set; } = false;
 
     public string AddObjectButtonText => "+ Lägg till " + _dataObjectService.PageTitleSingular.ToLowerInvariant();
 
@@ -88,9 +93,9 @@ public partial class UsersViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    public async Task Delete(string internalId)
+    public async Task Delete()
     {
-        await _deleteMap[_viewType](internalId);
+        await _deleteMap[_viewType](_deleteTargetId);
     }
     public async Task DeleteFinish<TAva, T>(string internalId) 
         where TAva : class, IUserAva 
@@ -109,6 +114,10 @@ public partial class UsersViewModel : ViewModelBase
         {
             Console.WriteLine(ex.Message);
         }
+        finally
+        {
+            HidePopup();
+        }
     }
 
     [RelayCommand]
@@ -121,5 +130,21 @@ public partial class UsersViewModel : ViewModelBase
     public void GoToEditUserView(string interalId)
     {
         _mainViewModel.GoToView(_goToEditMap[_viewType], interalId);
+    }
+
+
+
+
+    [RelayCommand]
+    public void ShowPopup(string internalId)
+    {
+        _deleteTargetId = internalId;
+        PopupVisible = _mainViewModel.IsBusy = true;
+    }
+            
+    [RelayCommand]
+    public void HidePopup()
+    {
+        PopupVisible = _mainViewModel.IsBusy = false;
     }
 }

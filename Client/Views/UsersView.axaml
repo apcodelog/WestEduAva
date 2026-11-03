@@ -40,7 +40,7 @@
                         Command="{Binding $parent[UserControl].DataContext.GoToEditUserViewCommand}"
                         CommandParameter="{Binding Id}" />
                       <Button Grid.Column="5" Content="&#xe4a8;" 
-                        Command="{Binding $parent[UserControl].DataContext.DeleteCommand}"
+                        Command="{Binding $parent[UserControl].DataContext.ShowPopupCommand}"
                         CommandParameter="{Binding Id}" />
                       <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" IsVisible="{Binding IsExpanded}" Text="{Binding DetailsLines}" />
                   </Grid>
@@ -53,7 +53,27 @@
       </ScrollViewer>
 
     </StackPanel>
+    
+    <Popup IsOpen="{Binding PopupVisible}" Placement="Center">
+      <Border Background="{DynamicResource ColorBg1}" BorderBrush="{DynamicResource ColorText1}" BorderThickness="1" Padding="40 30">
+        <StackPanel Spacing="20">
+          <TextBlock HorizontalAlignment="Center" Classes="h2" Text="Bekräfta borttagning" />
+          <StackPanel Spacing="10" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button Classes="nav" Command="{Binding DeleteCommand}">
+                <StackPanel>
+                    <Label Content="&#xe4a8;" />
+                    <Label Content="Ta bort" />
+                </StackPanel>
+            </Button>
+            <Button Classes="nav" Command="{Binding HidePopupCommand}">
+                <StackPanel>
+                    <Label Content="&#xe4f6;" />
+                    <Label Content="Avbryt" />
+                </StackPanel>
+            </Button>
+          </StackPanel>
+        </StackPanel>
+      </Border>
+    </Popup>
   </StackPanel>
-
-
 </UserControl>

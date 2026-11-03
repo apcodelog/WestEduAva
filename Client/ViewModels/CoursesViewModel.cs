@@ -16,21 +16,30 @@ public partial class CoursesViewModel : ViewModelBase
 {
     private readonly IDataObjectService _dataObjectService;
 
+    private readonly MainWindowViewModel _mainViewModel;
+
     [ObservableProperty]
     public partial ObservableCollection<CourseAva> Courses { get; set; } = [];
+
+    [ObservableProperty]
+    public partial bool PopupVisible { get; set; } = false;
+
+    private string _deleteTargetId = "";
 
     public CoursesViewModel()
     {
         _dataObjectService = new DataObjectService(ViewTypeEnum.Courses);
+        _mainViewModel = new MainWindowViewModel(new Factories.PageViewFactory());
         PageTitle = "Kurser - From Dev Preview Constructor";
 
         var list = new Storage<CourseAva>().Read(Path.Combine(Directory.GetCurrentDirectory(), "Assets", "TestData_courses.json"));
         Courses = new ObservableCollection<CourseAva>(list);
     }
 
-    public CoursesViewModel(IDataObjectService dataObjectService)
+    public CoursesViewModel(MainWindowViewModel mainViewModel, IDataObjectService dataObjectService)
     {
         _dataObjectService = dataObjectService;
+        _mainViewModel = mainViewModel;
         PageTitle = "Kurser";
         Init();
     }
@@ -41,11 +50,11 @@ public partial class CoursesViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    public async Task Delete(string interalId)
+    public async Task Delete()
     {
         try
         {
-            CourseAva course = await _dataObjectService.Find<CourseAva>("id", interalId);
+            CourseAva course = await _dataObjectService.Find<CourseAva>("id", _deleteTargetId);
             if (course is not null)
             {
                 await _dataObjectService.Delete<Course>(course._id);
@@ -55,6 +64,10 @@ public partial class CoursesViewModel : ViewModelBase
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            HidePopup();
         }
     }
 
@@ -68,5 +81,19 @@ public partial class CoursesViewModel : ViewModelBase
         {
             Console.WriteLine(ex.Message);
         }
+    }
+
+
+    [RelayCommand]
+    public void ShowPopup(string internalId)
+    {
+        _deleteTargetId = internalId;
+        PopupVisible = _mainViewModel.IsBusy = true;
+    }
+            
+    [RelayCommand]
+    public void HidePopup()
+    {
+        PopupVisible = _mainViewModel.IsBusy = false;
     }
 }

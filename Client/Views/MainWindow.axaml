@@ -12,39 +12,43 @@
         <vm:MainWindowViewModel></vm:MainWindowViewModel>
     </Design.DataContext>
 
+    <Panel>
+        <StackPanel Background="{DynamicResource ColorBg1}">
+            <Border Background="{DynamicResource ColorBg2}" BorderBrush="{DynamicResource ColorText1}" BorderThickness="0 0 0 1">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="10" Height="50">
+                    <Button Classes="nav" Command="{Binding GoToHomeCommand}">
+                        <StackPanel>
+                            <Label Content="&#xe2c2;" />
+                            <Label Content="Startsida" />
+                        </StackPanel>
+                    </Button>
+                    <Button Classes="nav" Command="{Binding GoToCoursesCommand}">
+                        <StackPanel>
+                            <Label Content="&#xe5fe;" />
+                            <Label Content="Kurser" />
+                        </StackPanel>
+                    </Button>
+                    <Button Classes="nav" Command="{Binding GoToStudents}">
+                        <StackPanel>
+                            <Label Content="&#xe62c;" />
+                            <Label Content="Elever" />
+                        </StackPanel>
+                    </Button>
+                    <Button Classes="nav" Command="{Binding GoToTeachers}">
+                        <StackPanel>
+                            <Label Content="&#xe516;" />
+                            <Label Content="Lärare" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+    
+            <UserControl Content="{Binding CurrentView}" />
+    
+        </StackPanel>
 
-    <StackPanel Background="{DynamicResource ColorBg1}">
-        <Border Background="{DynamicResource ColorBg2}" BorderBrush="{DynamicResource ColorText1}" BorderThickness="0 0 0 1">
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="10" Height="50">
-                <Button Classes="nav" Command="{Binding GoToHomeCommand}">
-                    <StackPanel>
-                        <Label Content="&#xe2c2;" />
-                        <Label Content="Startsida" />
-                    </StackPanel>
-                </Button>
-                <Button Classes="nav" Command="{Binding GoToCoursesCommand}">
-                    <StackPanel>
-                        <Label Content="&#xe5fe;" />
-                        <Label Content="Kurser" />
-                    </StackPanel>
-                </Button>
-                <Button Classes="nav" Command="{Binding GoToStudents}">
-                    <StackPanel>
-                        <Label Content="&#xe62c;" />
-                        <Label Content="Elever" />
-                    </StackPanel>
-                </Button>
-                <Button Classes="nav" Command="{Binding GoToTeachers}">
-                    <StackPanel>
-                        <Label Content="&#xe516;" />
-                        <Label Content="Lärare" />
-                    </StackPanel>
-                </Button>
-            </StackPanel>
-        </Border>
-
-        <UserControl Content="{Binding CurrentView}" />
-
-    </StackPanel>
+        <Panel Background="Black" Opacity="0.3" IsVisible="{Binding IsBusy}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        </Panel>
+    </Panel>
 
 </Window>

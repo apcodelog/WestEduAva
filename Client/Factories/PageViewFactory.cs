@@ -15,7 +15,7 @@ public class PageViewFactory
         {
             ViewTypeEnum.Home => new HomeViewModel(),
 
-            ViewTypeEnum.Courses => new CoursesViewModel(new DataObjectService(ViewTypeEnum.Courses)),
+            ViewTypeEnum.Courses => new CoursesViewModel(mainViewModel, new DataObjectService(ViewTypeEnum.Courses)),
             ViewTypeEnum.NewCourse => new CourseEditViewModel(mainViewModel, new DataObjectService(ViewTypeEnum.Courses), null),
 
             ViewTypeEnum.Students => new UsersViewModel(mainViewModel, ViewTypeEnum.Students),
