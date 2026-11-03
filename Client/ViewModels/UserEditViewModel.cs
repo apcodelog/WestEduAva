@@ -49,9 +49,9 @@ public partial class UserEditViewModel : ViewModelBase, IEditView
     public UserEditViewModel()
     {
         PageTitle = "For develop preview";
-        _previousPage = ViewTypeEnum.Students;
+        _previousPage = ViewTypeEnum.Teachers;
         _mainViewModel = new MainWindowViewModel(new Factories.PageViewFactory());
-        _dataObjectService = new DataObjectService(ViewTypeEnum.Students);
+        _dataObjectService = new DataObjectService(ViewTypeEnum.Teachers);
 
         KnowledgeTags = new(Enum.GetValues<KnowledgeTagEnum>().Skip(1).Select(o => new KnowledgeTagAva(o, false)));
     }
