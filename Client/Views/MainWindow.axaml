@@ -47,7 +47,7 @@
     
         </StackPanel>
 
-        <Panel Background="Black" Opacity="0.3" IsVisible="{Binding IsBusy}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Panel Background="Black" Opacity="0.3" IsVisible="{Binding BlockForPopup}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         </Panel>
     </Panel>
 

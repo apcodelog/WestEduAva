@@ -33,6 +33,8 @@ public partial class UsersViewModel : ViewModelBase
 
     [ObservableProperty]
     public partial bool PopupVisible { get; set; } = false;
+    [ObservableProperty]
+    public partial bool IsBusy { get; set; } = false;
 
     public string AddObjectButtonText => "+ Lägg till " + _dataObjectService.PageTitleSingular.ToLowerInvariant();
 
@@ -101,6 +103,7 @@ public partial class UsersViewModel : ViewModelBase
         where TAva : class, IUserAva 
         where T : class
     {
+        IsBusy = true;
         try
         {
             TAva user = await _dataObjectService.Find<TAva>("id", internalId);
@@ -139,12 +142,13 @@ public partial class UsersViewModel : ViewModelBase
     public void ShowPopup(string internalId)
     {
         _deleteTargetId = internalId;
-        PopupVisible = _mainViewModel.IsBusy = true;
+        PopupVisible = _mainViewModel.BlockForPopup = true;
     }
             
     [RelayCommand]
     public void HidePopup()
     {
-        PopupVisible = _mainViewModel.IsBusy = false;
+        PopupVisible = _mainViewModel.BlockForPopup = false;
+        IsBusy = false;
     }
 }

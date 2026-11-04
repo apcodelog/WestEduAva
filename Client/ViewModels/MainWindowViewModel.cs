@@ -14,7 +14,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public partial ViewModelBase CurrentView { get; set; } = new();
 
     [ObservableProperty]
-    public partial bool IsBusy { get; set; } = false;
+    public partial bool BlockForPopup { get; set; } = false;
 
     public MainWindowViewModel(PageViewFactory pageViewFactory)
     {

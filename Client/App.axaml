@@ -23,6 +23,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="/Assets/Resources/ColorResources.axaml" />
                 <ResourceInclude Source="/Assets/Resources/AppResources.axaml" />
+                <ResourceInclude Source="avares://LoadingIndicators.Avalonia/LoadingIndicators.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

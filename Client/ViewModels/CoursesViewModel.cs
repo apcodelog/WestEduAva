@@ -23,6 +23,8 @@ public partial class CoursesViewModel : ViewModelBase
 
     [ObservableProperty]
     public partial bool PopupVisible { get; set; } = false;
+    [ObservableProperty]
+    public partial bool IsBusy { get; set; } = false;
 
     private string _deleteTargetId = "";
 
@@ -52,6 +54,7 @@ public partial class CoursesViewModel : ViewModelBase
     [RelayCommand]
     public async Task Delete()
     {
+        IsBusy = true;
         try
         {
             CourseAva course = await _dataObjectService.Find<CourseAva>("id", _deleteTargetId);
@@ -88,12 +91,13 @@ public partial class CoursesViewModel : ViewModelBase
     public void ShowPopup(string internalId)
     {
         _deleteTargetId = internalId;
-        PopupVisible = _mainViewModel.IsBusy = true;
+        PopupVisible = _mainViewModel.BlockForPopup = true;
     }
             
     [RelayCommand]
     public void HidePopup()
     {
-        PopupVisible = _mainViewModel.IsBusy = false;
+        PopupVisible = _mainViewModel.BlockForPopup = false;
+        IsBusy = false;
     }
 }
